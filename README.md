@@ -61,9 +61,9 @@ git commit -m "create: #1 4장 변수"
 git push origin user-b
 
 # 메인 브랜치로 전환합니다
-git checkout main
+git checkout master
 
-# user-b 브랜치를 main 브랜치로 병합합니다
+# user-b 브랜치를 master 브랜치로 병합합니다
 git merge user-b
 
 ```
