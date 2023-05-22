@@ -2,36 +2,47 @@
 <html lang="ko">
 
 <head>
-    <title>Product List</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product mockup data fetching</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <script src="script/fetch-products.js" type="module"></script>
+    <script src="script/render-product-list.js" type="module"></script>
+    <script src="script/element-helpers.js" type="module"></script>
+    <script src="script/main.js" type="module"></script>
+    <style>
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .object-center {
+            object-position: center;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Product List</h2>
-
-    <ul id="prodList"></ul>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', fetchProducts);
-
-        async function fetchProducts() {
-            try {
-                const response = await fetch('https://dummyjson.com/products');
-                const data = await response.json();
-                renderProductList(data.products); // 'products' 배열을 렌더링 함수에 전달
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        }
-
-        function renderUserList(product) {
-            const prodList = document.getElementById('prodList');
-            prodList.innerHTML = '';
-
-            product.forEach((product) => {
-                // TODO: 
-            });
-        }
-    </script>
+    <!-- list -->
+    <ol id="prodList" class="ml-auto mr-auto w-fit">
+        <li class="max-w-sm rounded overflow-hidden shadow-lg">
+            <figure>
+                <img src="https://i.dummyjson.com/data/products/1/thumbnail.jpg" alt="iPhone 9" width="384" height="158"
+                    loading="lazy">
+            </figure>
+            <div class="px-6 py-4">
+                <span class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Badge</span>
+                <a href="" class="text-black mt-2 hover:underline">
+                    <strong class="block text-xl mt-2">iPhone 9</strong>
+                    <p class="text-gray-700 text-base">An apple mobile which is nothing like apple</p>
+                </a>
+                <p class="text-gray-700 mt-2"><span class="font-bold">가격:</span> 549,000원</p>
+                <p class="text-gray-700"><span class="font-bold">할인가:</span> 12.96%</p>
+            </div>
+        </li>
+    </ol>
+    <!-- //list -->
 </body>
 
 </html>
