@@ -3,10 +3,6 @@
 '모던 자바스크립트: 딥다이브'의 4장에서 변수에 대한 내용과 MDN 문서들을 참고하였습니다. 
 참고한 문서의 링크 정보는 아래에서 확인하실 수 있습니다.
 
-- [4장. 변수(Variables)](#4장-변수variables)
-  - [용어](#용어)
-  - [Reference](#reference)
-
 <br>
 
 - **식별자(JavaScript identifier)**
@@ -57,7 +53,6 @@
         - 예약어(reserved keyword)를 식별자로 사용할 수 없습니다. 예약어들은 JavaScript에서 특정한 역할을 수행하기 위해 예약되어 있으므로, 변수 또는 함수 이름으로 사용할 수 없습니다.
             - [MDN, 예약어 목록](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words)
         
-        <br>
         
     - **식별자 명명(Identifier Naming)  규칙**
         
@@ -80,8 +75,7 @@
         let my_variable = "Goodbye";
         let myVar1 = 10;
         ```
-        <br>
-
+        
         **좋은 식별자를 선언**
         
         > [구글의 자바스크립트 스타일 가이드, naming rules by identifier type](https://google.github.io/styleguide/jsguide.html#naming-rules-by-identifier-type)
@@ -129,8 +123,6 @@
         
         각각의 사각형 객체는 `length`와 `width`라는 속성을 가지고 있습니다. 이 속성은 각각의 사각형의 길이와 너비를 나타냅니다.
         
-         
-        
         `calculateArea` 함수는 `length`와 `width` 매개변수를 받아서 면적을 계산하고, 계산된 면적인 `area`를 반환합니다. 그리고 `rectangle1`과 `rectangle2`를 이용하여 `calculateArea` 함수를 호출하여 면적을 계산하고, `area1`과 `area2` 변수에 각각의 면적을 저장합니다. 이후 `console.log`를 사용하여 `area1`과 `area2`의 값을 출력합니다.
         
         이 예제에서 `rectangle1`과 `rectangle2`는 객체이며, 객체의 속성인 `length`와 `width`는 메모리에 저장된 데이터를 나타냅니다. 이러한 속성들을 식별하기 위해 식별자를 사용합니다. 함수 내부의 `area` 변수 역시 메모리에 저장된 값을 식별하기 위한 식별자입니다.
@@ -173,8 +165,6 @@
     > 자바스크립트는 동적 언어로서, 변수의 유연성과 다양한 타입의 값을 다룰 수 있는 특성을 가지고 있습니다.<br>
     > 이는 자바스크립트를 빠르게 프로토타입 및 스크립트 개발에 사용할 수 있게 만들어주고, 유연한 동작을 제공합니다.
     
-    <br>
-    
     - **변수 선언(Variable Declarations)**
         
         ```jsx
@@ -188,8 +178,6 @@
         ```
         
         JavaScript에서 변수를 사용하려면 먼저 변수를 생성하고, 즉 변수를 선언해야 합니다. 변수를 선언하기 위해 `var`, `let`, 또는 `const` 키워드 중 하나를 사용합니다
-        
-        <br>
         
         1. **`var`** 키워드:
             - 예전에 사용되던 변수 선언 방식입니다.
@@ -298,7 +286,7 @@
         // bar 변수는 foo 객체의 bar 키에 해당하는 값인 "Hello"가 할당되고, 
         // baz 변수는 foo 객체의 baz 키에 해당하는 값인 "World"가 할당됩니다.
         ```
-        <br>
+        
     
     - **변수의 유효 범위(Scope)**
         
