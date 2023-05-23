@@ -132,7 +132,7 @@ docs: 설치 안내서에 README 업데이트
 
 <br>
 
-## 💪 Participant
+## 💪 Participants
 
 <a href="https://github.com/gather-around-and-code/study-deepdive-js/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=gather-around-and-code/study-deepdive-js" />
