@@ -1,5 +1,4 @@
 import { renderProductList } from './render-product-list.js';
-import { createSpan, createAnchor, createStrong, createParagraph } from './element-helpers.js';
 
 async function fetchProducts() {
     try {

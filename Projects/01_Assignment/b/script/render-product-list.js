@@ -12,6 +12,7 @@ function renderProductList(products) {
         listItem.classList.add('max-w-sm', 'rounded', 'overflow-hidden', 'shadow-lg', 'mt-10');
 
         const figure = document.createElement('figure');
+        figure.classList.add('relative', 'before:absolute', 'before:content-[""]', 'before:block', 'before:w-full', 'before:h-full', 'before:bg-black/40')
 
         const img = document.createElement('img');
         img.src = product.thumbnail;
@@ -24,7 +25,7 @@ function renderProductList(products) {
         listItem.appendChild(figure);
 
         const detailsDiv = document.createElement('div');
-        detailsDiv.classList.add('px-6', 'py-4');
+        detailsDiv.classList.add('relative', 'px-6', 'py-4');
 
         const brandStyle = ['bg-gray-200', 'rounded-full', 'px-3', 'py-1', 'text-sm', 'font-semibold', 'text-gray-700'];
         const brandSpan = createSpan(brandStyle, product.brand);
@@ -43,15 +44,16 @@ function renderProductList(products) {
         detailsDiv.appendChild(productLink);
 
         const srOnlyStyle = ['sr-only'];
-        const cardPriceInfo = ['text-gray-700']
+        const cardPriceInfo = ['mt-3', 'text-lg', 'font-bold', 'text-black', 'text-right']
+        const cardSalePriceInfo = ['text-rose-600', 'text-3xl', 'font-bold', 'text-right']
 
         const priceParagraph = createParagraph(cardPriceInfo);
         const priceLabelSpan = createSpan(srOnlyStyle, '가격: ');
         priceParagraph.appendChild(priceLabelSpan);
-        priceParagraph.innerHTML += `${product.price},000원`;
+        priceParagraph.innerHTML += `${product.price},000원`; // TODO: 원가 - 할인가 = 판매가, $->원화
         detailsDiv.appendChild(priceParagraph);
 
-        const discountParagraph = createParagraph(cardPriceInfo);
+        const discountParagraph = createParagraph(cardSalePriceInfo);
         const discountLabelSpan = createSpan(srOnlyStyle, '할인가: ');
         discountParagraph.appendChild(discountLabelSpan);
         discountParagraph.innerHTML += `${product.discountPercentage}%`;
@@ -66,4 +68,5 @@ function clearProductList() {
     const productListContainer = document.getElementById('prodList');
     productListContainer.innerHTML = '';
 }
+
 export { renderProductList };

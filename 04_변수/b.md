@@ -427,12 +427,12 @@
 <br>
 
 ## Reference
-- **[Storing the information you need — Variables](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables)**
-- **[JavaScript Variables - CodeGuage](https://www.codeguage.com/courses/js/variables)**
-- **[Declaring Variables without Var, Let, Const - What Would Happen?](https://www.youtube.com/watch?v=6UAKBYpUC-Y)**
-- **[How to declare variables in different ways in JavaScript?](https://www.geeksforgeeks.org/how-to-declare-variables-in-different-ways-in-javascript/)**
-- **[JavaScript Variables](https://javascript.info/variables)**
-- **[How to declare variables in different ways in JavaScript?](https://www.geeksforgeeks.org/how-to-declare-variables-in-different-ways-in-javascript/)**
+- [**Storing the information you need — Variables**](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables)
+- [**JavaScript Variables - CodeGuage**](https://www.codeguage.com/courses/js/variables)
+- [**Declaring Variables without Var, Let, Const - What Would Happen?**](https://www.youtube.com/watch?v=6UAKBYpUC-Y)
+- [**How to declare variables in different ways in JavaScript?**](https://www.geeksforgeeks.org/how-to-declare-variables-in-different-ways-in-javascript/)
+- [**JavaScript Variables**](https://javascript.info/variables)
+- [**How to declare variables in different ways in JavaScript?**](https://www.geeksforgeeks.org/how-to-declare-variables-in-different-ways-in-javascript/)
 - [**Identifier - MDN Web Docs Glossary**](https://developer.mozilla.org/en-US/docs/Glossary/Identifier)
 - [**Variable - MDN Web Docs Glossary**](https://developer.mozilla.org/en-US/docs/Glossary/Variable)
 - [**const - MDN Web Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)

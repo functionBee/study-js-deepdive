@@ -5,6 +5,13 @@ function createSpan(classNames, textContent) {
     return span;
 }
 
+function createStrong(classNames, textContent) {
+    const strong = document.createElement('strong');
+    strong.classList.add(...classNames);
+    strong.textContent = textContent;
+    return strong;
+}
+
 function createAnchor(classNames, href, target, title, rel) {
     const link = document.createElement('a');
     link.classList.add(...classNames);
@@ -19,13 +26,6 @@ function createAnchor(classNames, href, target, title, rel) {
         link.rel = rel;
     }
     return link;
-}
-
-function createStrong(classNames, textContent) {
-    const strong = document.createElement('strong');
-    strong.classList.add(...classNames);
-    strong.textContent = textContent;
-    return strong;
 }
 
 function createParagraph(classNames, textContent) {
