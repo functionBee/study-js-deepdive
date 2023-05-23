@@ -7,6 +7,7 @@ function renderProductList(products) {
     // 기존 제품 목록 지우기
     clearProductList();
 
+    // TODO: refactoring
     products.forEach((product) => {
         const listItem = document.createElement('li');
         listItem.classList.add('max-w-sm', 'rounded', 'overflow-hidden', 'shadow-lg', 'mt-10');
