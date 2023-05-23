@@ -26,31 +26,35 @@ function renderProductList(products) {
         const detailsDiv = document.createElement('div');
         detailsDiv.classList.add('px-6', 'py-4');
 
-        const brandSpan = createSpan('inline-block', 'bg-gray-200', 'rounded-full', 'px-3', 'py-1', 'text-sm', 'font-semibold', 'text-gray-700');
-        brandSpan.textContent = product.brand;
+        const brandStyle = ['bg-gray-200', 'rounded-full', 'px-3', 'py-1', 'text-sm', 'font-semibold', 'text-gray-700'];
+        const brandSpan = createSpan(brandStyle, product.brand);
         detailsDiv.appendChild(brandSpan);
 
-        const productLink = createAnchor('text-black', 'hover:underline');
-        const productTitle = createStrong('block', 'text-xl', 'mb-2');
-        productTitle.textContent = product.title;
-        const productDescription = createParagraph('text-gray-700', 'text-base');
-        productDescription.textContent = product.description;
+        const productStyle = ['text-black', 'hover:underline']
+        const productLink = createAnchor(productStyle, '#', null, null, null);
+
+        const productTitleStyle = ['block', 'text-xl', 'mt-2']
+        const productTitle = createStrong(productTitleStyle, product.title);
+
+        const productDescriptionStyle = ['text-gray-700', 'text-base']
+        const productDescription = createParagraph(productDescriptionStyle, product.description);
         productLink.appendChild(productTitle);
         productLink.appendChild(productDescription);
         detailsDiv.appendChild(productLink);
 
-        const priceParagraph = createParagraph('text-gray-700');
-        const priceLabelSpan = createSpan('font-semibold');
-        priceLabelSpan.textContent = '가격: ';
+        const srOnlyStyle = ['sr-only'];
+        const cardPriceInfo = ['text-gray-700']
+
+        const priceParagraph = createParagraph(cardPriceInfo);
+        const priceLabelSpan = createSpan(srOnlyStyle, '가격: ');
         priceParagraph.appendChild(priceLabelSpan);
-        priceParagraph.innerHTML += `${product.price.toLocaleString()}원`;
+        priceParagraph.innerHTML += `${product.price},000원`;
         detailsDiv.appendChild(priceParagraph);
 
-        const discountParagraph = createParagraph('text-gray-700');
-        const discountLabelSpan = createSpan('font-semibold');
-        discountLabelSpan.textContent = '할인%: ';
+        const discountParagraph = createParagraph(cardPriceInfo);
+        const discountLabelSpan = createSpan(srOnlyStyle, '할인가: ');
         discountParagraph.appendChild(discountLabelSpan);
-        discountParagraph.innerHTML += `${product.discountPercentage.toFixed(2)}%`;
+        discountParagraph.innerHTML += `${product.discountPercentage}%`;
         detailsDiv.appendChild(discountParagraph);
 
         listItem.appendChild(detailsDiv);
