@@ -2,7 +2,7 @@
 
 
 # study-deepdive-js
-Javascript Deep Dive를 토대로 자바스크립트 개념을 공부하는 스터디입니다.
+Javascript Deep Dive와 MDN문서를 토대로 자바스크립트 개념을 공부하는 스터디 기록입니다.
 
 <br>
 
