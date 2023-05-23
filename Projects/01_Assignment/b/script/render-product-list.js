@@ -45,7 +45,7 @@ function renderProductList(products) {
 
         const srOnlyStyle = ['sr-only'];
         const cardPriceInfo = ['mt-3', 'text-lg', 'font-bold', 'text-black', 'text-right']
-        const cardSalePriceInfo = ['text-rose-600', 'text-3xl', 'font-bold', 'text-right']
+        const cardDiscountPriceInfo = ['text-rose-600', 'text-3xl', 'font-bold', 'text-right']
 
         const priceParagraph = createParagraph(cardPriceInfo);
         const priceLabelSpan = createSpan(srOnlyStyle, '가격: ');
@@ -53,7 +53,7 @@ function renderProductList(products) {
         priceParagraph.innerHTML += `${product.price},000원`; // TODO: 원가 - 할인가 = 판매가, $->원화
         detailsDiv.appendChild(priceParagraph);
 
-        const discountParagraph = createParagraph(cardSalePriceInfo);
+        const discountParagraph = createParagraph(cardDiscountPriceInfo);
         const discountLabelSpan = createSpan(srOnlyStyle, '할인가: ');
         discountParagraph.appendChild(discountLabelSpan);
         discountParagraph.innerHTML += `${product.discountPercentage}%`;
