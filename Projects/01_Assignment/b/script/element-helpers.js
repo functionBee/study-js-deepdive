@@ -1,29 +1,4 @@
-function createAnchor(classNames, href, target, title, rel) {
-    const link = document.createElement('a');
-    link.classList.add(...classNames);
-    link.href = href;
-    if (target !== null) {
-        link.target = target;
-    }
-    if (title !== null) {
-        link.title = title;
-    }
-    if (rel !== null) {
-        link.rel = rel;
-    }
-    return link;
-}
-
-function createButton(classNames, textContent, title, type, dataValues) {
-    const button = document.createElement('button');
-    button.classList.add(...classNames);
-    button.textContent = textContent;
-    button.setAttribute('title', title);
-    button.setAttribute('data' + type, ...dataValues);
-    return button;
-}
-
-function createTypographyElement(tagName, classNames, textContent) {
+function createHTMLElement(tagName, classNames, textContent) {
     const element = document.createElement(tagName);
     element.classList.add(...classNames);
     if (textContent) {
@@ -32,9 +7,36 @@ function createTypographyElement(tagName, classNames, textContent) {
     return element;
 }
 
-function createHeading(level, classNames, textContent) {
-    const tagName = 'h' + level;
-    return createTypographyElement(tagName, classNames, textContent);
+function createAnchor(classNames, href, target, title, rel) {
+    const link = createHTMLElement('a', classNames);
+    link.href = href;
+    if (target) {
+        link.target = target;
+    }
+    if (title) {
+        link.title = title;
+    }
+    if (rel) {
+        link.rel = rel;
+    }
+    return link;
 }
 
-export { createAnchor, createButton, createTypographyElement, createHeading };
+function createButton(classNames, textContent, title, type) {
+    const button = createHTMLElement('button', classNames, textContent);
+    button.setAttribute('title', title);
+    if (target !== null) {
+        for (const key in type) {
+            button.setAttribute('data-' + key, type[key]);
+        }
+    }
+    
+    return button;
+}
+
+function createHeading(level, classNames, textContent) {
+    const tagName = 'h' + level;
+    return createHTMLElement(tagName, classNames, textContent);
+}
+
+export { createAnchor, createButton, createHeading, createHTMLElement };
