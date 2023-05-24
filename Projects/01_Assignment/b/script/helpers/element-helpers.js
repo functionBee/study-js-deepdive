@@ -39,7 +39,7 @@ function createButton(classNames, textContent, target, title, datTypes) {
     return button;
 }
 
-function createImage(classNames, src, srcset, alt, role, width, height, loading, decoding, fetchpriority) {
+function createImage(classNames, src, srcset, alt, width, height, loading, decoding, fetchpriority) {
     const img = createHTMLElement('img', classNames);
     img.src = src;
     if (srcset) {
@@ -49,10 +49,10 @@ function createImage(classNames, src, srcset, alt, role, width, height, loading,
     img.width = width;
     img.height = height;
     if (loading) {
-        img.loading = loading;
+        img.setAttribute('loading', loading);
     }
     if (decoding) {
-        img.decoding = decoding;
+        img.setAttribute('decoding', decoding);
     }
     if (fetchpriority) {
         img.setAttribute('fetchpriority', fetchpriority);
