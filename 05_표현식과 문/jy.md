@@ -66,7 +66,8 @@
 - **문(statement)**
 
   문은 프로그램을 구성하는 기본 단위이자 최소 실행 단위입니다. 문의 집합으로 이뤄진 것이 프로그램이며, 문을 작성하고 순서에 맞게 나열하는 것이 프로그래밍입니다.
-  - 문은 여러 **`token`** 으로  구성됩니다. **`token`** 이란 문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소를 의미합니다.
+  - 문은 여러 **`token`** 으로 구성됩니다. **`token`** 이란 문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소를 의미합니다.
+    **상수, 식별자, 연산자, 구분자, 예약어** 5가지를 **`token`** 이라고 합니다.
     
     ![image](https://github.com/gather-around-and-code/study-js-deepdive/assets/67141218/c0d91559-1736-4be5-8aa5-ac0e5d961d03)
     
@@ -111,3 +112,4 @@
 - [**Literal - MDN Web Docs Glossar**](https://developer.mozilla.org/en-US/docs/Glossary/Literal)
 - [**Literal - Wikipedia**](https://en.wikipedia.org/wiki/Literal_(computer_programming))
 - [**Statements - MDN Web Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements)
+- [**Token - Techterms**](https://techterms.com/definition/token)
