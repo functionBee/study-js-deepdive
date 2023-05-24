@@ -1,4 +1,4 @@
-import { renderProductList } from './render-product-list.js';
+import { renderProductList } from '../product-list.js';
 
 async function fetchProducts() {
     try {
