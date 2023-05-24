@@ -1,17 +1,3 @@
-function createSpan(classNames, textContent) {
-    const span = document.createElement('span');
-    span.classList.add(...classNames);
-    span.textContent = textContent;
-    return span;
-}
-
-function createStrong(classNames, textContent) {
-    const strong = document.createElement('strong');
-    strong.classList.add(...classNames);
-    strong.textContent = textContent;
-    return strong;
-}
-
 function createAnchor(classNames, href, target, title, rel) {
     const link = document.createElement('a');
     link.classList.add(...classNames);
@@ -28,13 +14,27 @@ function createAnchor(classNames, href, target, title, rel) {
     return link;
 }
 
-function createParagraph(classNames, textContent) {
-    const paragraph = document.createElement('p');
-    paragraph.classList.add(...classNames);
-    if (textContent) {
-        paragraph.textContent = textContent;
-    }
-    return paragraph;
+function createButton(classNames, textContent, title, type, dataValues) {
+    const button = document.createElement('button');
+    button.classList.add(...classNames);
+    button.textContent = textContent;
+    button.setAttribute('title', title);
+    button.setAttribute('data' + type, ...dataValues);
+    return button;
 }
 
-export { createSpan, createAnchor, createStrong, createParagraph };
+function createTypographyElement(tagName, classNames, textContent) {
+    const element = document.createElement(tagName);
+    element.classList.add(...classNames);
+    if (textContent) {
+        element.textContent = textContent;
+    }
+    return element;
+}
+
+function createHeading(level, classNames, textContent) {
+    const tagName = 'h' + level;
+    return createTypographyElement(tagName, classNames, textContent);
+}
+
+export { createAnchor, createButton, createTypographyElement, createHeading };
