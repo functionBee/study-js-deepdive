@@ -372,7 +372,77 @@ console.log(x);  // 출력: 10
 변수 호이스팅은 `var` 키워드로 선언된 변수에만 적용됩니다. `le`t과 `const`로 선언된 변수는 블록 스코프를 갖기 때문에 호이스팅되지 않고, 해당 블록 내에서만 유효하며, 블록을 벗어나면 소멸됩니다. 변수 호이스팅을 이해하면 변수 선언이 실제 코드 위치와 상관없이 동작한다는 것을 알 수 있습니다. 그러나 코드 가독성과 유지보수를 위해 변수 선언은 가능한한 스코프 상단에 명시적으로 작성하는 것이 좋습니다.
 
 ### 2-1.6. **변수의 실행시점:**
+변수의 실행 시간(runtime)은 변수가 메모리에 존재하고 액세스하거나 수정할 수 있는 프로그램 실행 동안의 기간을 의미합니다. 변수의 실행 시간은 변수의 스코프(scope)에 의해 결정되며, 변수가 어디에서 액세스 가능하며 얼마 동안 메모리에 유지되는지를 결정합니다.
 
+1. 전역 스코프(Global Scope):
+    어떤 함수나 블록 안에 선언되지 않은 변수는 전역 스코프를 가집니다.
+    전역 변수는 프로그램 전체 실행 동안의 실행 시간을 가집니다.
+    함수와 블록 내부를 포함하여 프로그램 어디서든 액세스할 수 있습니다.
+    ```jsx
+    // 전역 스코프(Global Scope)
+    let globalVariable = "전역 변수입니다";
+
+    function globalFunction() {
+      console.log(globalVariable); // 전역 변수에 접근
+    }
+
+    globalFunction(); // 출력: "전역 변수입니다"
+    ```
+
+2. 함수 스코프(Function Scope):
+    함수 내에서 선언된 변수는 함수 스코프를 가집니다.
+    함수 스코프 변수는 함수 블록 내에서만 존재하며, 함수 실행이 완료되면 소멸됩니다.
+    함수 외부에서는 액세스할 수 없습니다.
+    ```jsx
+    // 함수 스코프(Function Scope)
+    function functionScopeExample() {
+      let functionVariable = "함수 변수입니다";
+
+      console.log(functionVariable); // 함수 변수에 접근
+    }
+
+    functionScopeExample(); // 출력: "함수 변수입니다"
+    ```
+
+3. 블록 스코프(Block Scope):
+    중괄호로 둘러싸인 블록 내에서 let과 const 키워드로 선언된 변수는 블록 스코프를 가집니다.
+    블록 스코프 변수는 정의된 블록 내에서만 존재하며, 블록 실행이 완료되면 소멸됩니다.
+    블록 외부에서는 액세스할 수 없습니다.
+    ```jsx
+    // 블록 스코프(Block Scope)
+    function blockScopeExample() {
+      if (true) {
+        let blockVariable = "블록 변수입니다";
+        console.log(blockVariable); // 블록 변수에 접근
+      }
+
+      // console.log(blockVariable); // 에러: blockVariable이 정의되지 않음
+    }
+
+    blockScopeExample(); // 출력: "블록 변수입니다"
+    ```
+
+4. 렉시컬 스코프 (클로저):
+    내부 함수에서 정의된 변수는 외부 함수 스코프의 변수에 렉시컬 스코핑 (클로저)으로 인해 액세스할 수 있습니다.
+    렉시컬 스코프의 변수의 실행 시간은 클로저의 수명에 따라 결정됩니다.
+    외부 함수의 실행이 완료된 후에도 내부 함수(및 그 변수)는 반환되거나 변수에 저장되어 실행 시간을 가질 수 있습니다.
+    ```jsx
+    // 렉시컬 스코프 (클로저)
+    function outerFunction() {
+      let outerVariable = "외부 변수입니다";
+
+      function innerFunction() {
+        console.log(outerVariable); // 클로저를 통해 외부 변수에 접근
+      }
+
+      return innerFunction;
+    }
+
+    const closureExample = outerFunction();
+    closureExample(); // 출력: "외부 변수입니다"
+    ```
+
+`var` 키워드로 선언된 변수는 (ES6 이전에) 함수 스코프를 가지며, 블록 내에서 선언되어도 함수 스코프를 유지합니다. 그러나 잠재적인 문제를 피하기 위해 블록 스코프 변수에는 `let`과 `const`를 사용하는 것이 권장됩니다.
 
 <br>
 
