@@ -2,6 +2,20 @@
 
 값을 조작하거나 조건을 평가하기 위해 사용되는 기호나 키워드입니다. 연산자는 피연산자(operand)라고 불리는 값을 가지고 동작하며, 피연산자의 개수에 따라 단항 연산자(unary operator), 이항 연산자(binary operator), 삼항 연산자(ternary operator)로 분류될 수 있습니다.
 
+**[목차]**
+- **7장. 연산자(Operator)**
+  - [7-1. 산술 연산자(Arithmetic Operators)](#7-1-산술-연산자arithmetic-operators)
+  - [7-2. 할당 연산자(Assignment Operators)](#7-2-할당-연산자assignment-operators)
+  - [7-3. 비교 연산자(Comparison Operators)](#7-3-비교-연산자comparison-operators)
+  - [7-4. 논리 연산자(Logical Operators)](#7-4-논리-연산자logical-operators)
+  - [7-5. 비트 연산자(Bitwise Operators)](#7-5-비트-연산자bitwise-operators)
+  - [7-6. 조건(삼항) 연산자(Conditional (Ternary) Operator)](#7-6-조건삼항-연산자conditional-ternary-operator)
+  - [7-7. 타입 연산자(Type Operators)](#7-7-타입-연산자type-operators)
+  - [요약](#요약)
+  - [키워드](#키워드)
+  - [Reference](#reference)
+
+
 - **단항 연산자 (Unary Operators)**:
   - `+` (양수)
   - `-` (음수)
@@ -227,4 +241,5 @@ console.log(result);  // 출력: "양수"
    - `typeof` (값의 타입을 문자열로 반환)
    - `instanceof` (객체의 타입을 확인)
 
+## 키워드
 ## Reference
