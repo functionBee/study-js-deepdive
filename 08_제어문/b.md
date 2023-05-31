@@ -71,3 +71,4 @@ while (x < 10) {
 - [Statments & declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements)
 - [if와 ?를 사용한 조건처리](https://ko.javascript.info/ifelse)
 - [Control flow & error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
+- [loop & iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
