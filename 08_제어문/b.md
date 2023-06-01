@@ -14,8 +14,8 @@
   - [Reference](#reference)
 
 
-## 8-1. 블록문
-가장 기본적인 문(basic statement)으로 0개 이상의 문을 그룹화하는 데 사용됩니다. 블록은 한 쌍의 중괄호(`{}`)로 구분됩니다.
+## 8-1. 블록문(Block statement)
+블록 문은 중괄호 `{}`로 둘러싸인 하나 이상의 문의 그룹입니다. 이 그룹은 하나의 단위로 취급되며, 단독으로 실행될 수도 있고 다른 문 내에서 사용될 수도 있습니다.
 ```jsx
 // syntax
 {
@@ -25,13 +25,63 @@
   statementN;
 }
 ```
-블록 문장은 일반적으로 제어 흐름 문(Control flow statement; `if`, `for`, `while`)과 함께 사용됩니다.
-```jsx
-while (x < 10) {
-  x++;
-}
-```
+블록 문은 제어문(Control flow statement; `if`, `for`, `while`), 함수 (Functions), 조건부 실행 (Conditional Execution), 지역 변수 (Local Variables)을 사용해야 할 상황일 때 함께 사용됩니다.
+  - **제어문 (Control Statements)**:
+    if문, for문, while문, switch문 등과 같은 제어문에서 블록 문을 사용하여 조건을 나타내거나 반복 실행될 코드를 그룹화할 수 있습니다.
+    ```jsx
+    if (condition) {
+      // 조건이 참일 때 실행되는 코드
+    }
 
+    for (let i = 0; i < 5; i++) {
+      // 5번 반복되는 코드
+    }
+
+    while (condition) {
+      // 조건이 참인 동안 반복 실행되는 코드
+    }
+
+    switch (value) {
+      case 1:
+        // value가 1인 경우 실행되는 코드
+        break;
+      case 2:
+        // value가 2인 경우 실행되는 코드
+        break;
+      default:
+        // 위 case에 해당하지 않는 경우 실행되는 코드
+    }
+    ```
+  - **함수 (Functions)**:
+    함수 정의 시, 함수의 본문을 블록 문으로 감싸는 것이 일반적입니다. 이는 함수가 호출될 때 실행될 코드를 지정하는 데 사용됩니다.
+    ```jsx
+    function greet(name) {
+      // 함수 본문
+      console.log("Hello, " + name + "!");
+    }
+    ```
+  - **조건부 실행 (Conditional Execution)**
+    특정 조건에 따라 실행할 코드를 블록 문으로 그룹화하여 조건부로 실행할 수 있습니다.
+    ```jsx
+    if (condition) {
+      // 조건이 참일 때 실행되는 코드
+    } else {
+      // 조건이 거짓일 때 실행되는 코드
+    }
+    ```
+  - **지역 변수 (Local Variables)**
+    블록 문 내에서 선언된 변수는 해당 블록 문 내에서만 유효한 지역 변수로 취급됩니다. 이는 변수의 유효 범위를 제한하는 데 사용될 수 있습니다.
+    ```jsx
+    function calculateSum(numbers) {
+      let sum = 0; // 지역 변수
+
+      for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+      }
+
+      console.log(sum);
+    }
+    ```
 <br>
 
 ## 8-2. 조건문
