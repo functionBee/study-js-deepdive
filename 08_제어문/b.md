@@ -40,6 +40,41 @@ while (x < 10) {
 ### 8-2-1. **`if..else` Statement**
 JavaScript에서는 `if` 문을 사용하여 조건부 분기를 수행할 수 있습니다.
 `if` 문은 지정된 조건이 `true`로 평가될 경우에만 코드 블록을 실행할 수 있게 해줍니다.
+
+  <details>
+    <summary>falsy 값</summary>
+    조건문에서 `false`로 평가되는 값들이므로, 조건을 검사할 때 이러한 값들이 나타날 경우 해당 조건은 `falsy`한 값으로 간주됩니다. 반대로, falsy 값 이외의 모든 값들은 조건문에서 true로 평가되는 truthy 값으로 간주됩니다.
+
+    ```jsx
+    if (false) {
+      console.log("이 문장은 실행되지 않습니다.");
+    }
+
+    if (0) {
+      console.log("이 문장은 실행되지 않습니다.");
+    }
+
+    if (null) {
+      console.log("이 문장은 실행되지 않습니다.");
+    }
+
+    if (undefined) {
+      console.log("이 문장은 실행되지 않습니다.");
+    }
+
+    if ("") {
+      console.log("이 문장은 실행되지 않습니다.");
+    }
+    ```
+    - `false`: 불리언 타입의 false 값은 falsy 값입니다.
+    - `0`: 숫자 타입의 0은 falsy 값입니다.
+    - `-0`: 숫자 타입의 -0은 falsy 값입니다.
+    - `NaN`: 숫자 타입의 NaN (Not-a-Number)은 falsy 값입니다.
+    - `null`: null은 falsy 값입니다.
+    - `undefined`: undefined는 falsy 값입니다.
+    - `""` (빈 문자열): 빈 문자열은 falsy 값입니다.
+  </details>
+
 ```jsx
 if (조건) {
   // 조건이 true일 때 실행되는 코드
