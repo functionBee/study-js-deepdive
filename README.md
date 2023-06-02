@@ -101,12 +101,11 @@ docs: 설치 안내서에 README 업데이트
 <br>
 
 ## 🔖 Content
-|   	| 날짜           	| 챕터    	| 발표자 	| 불참자 	| 과제                   	|
+|   	| 날짜           	| 챕터    	| 발표자 	| 불참자 	| Q&A                   	|
 |---	|----------------	|---------	|--------	|--------	|------------------------	|
-| 1 	| 2023-05-25(목) 	 | 4장,5장   	|  b(4), jamie(5)      	|        	| [상품 리스트 만들기](https://github.com/gather-around-and-code/study-js-deepdive/issues/3) 	|
-| 2 	| 2023-05-29(월)  	| 6장,7장 	 |   choi(6), jamie(7)     	|        	|  [차트](https://github.com/gather-around-and-code/study-js-deepdive/issues/13)                      	|
-| 3 	| 2023-06-01(목)  	| 8장,9장  	|   b(8), choi(9)     	|     	|     [프로젝트 아이디어 제안]()  	|
-| 5 	| 2023-06-05(월)  	| 10장,11장   	|        	|        	|                        	|
+| 1 	| 2023-05-25(목) 	 | 4장,5장   	|  b(4), jamie(5)      	|        	|  	|
+| 2 	| 2023-05-29(월)  	| 6장,7장 	 |   choi(6), jamie(7)     	|        	|                       	|
+| 3 	| 2023-06-01(목)  	| 8장,9장  	|   b(8), choi(9)     	|     	|       	|
 | 6 	| 2023-06-08(목)  	| 12장   	|        	|        	|                        	|
 | 4 	| 2023-06-12(월)  	| 13장,23장   	|        	|        	|                        	|
 | 7 	| 2023-06-15(목)  	| 14장,15장   	|        	|        	|                        	|
@@ -132,8 +131,18 @@ docs: 설치 안내서에 README 업데이트
 
 <br>
 
-## 💪 Participants
+## Toy Project 목록
+|   | Toy Project | 경로 |
+|:-:|:-----------:|:----:|
+| 1 | [Fetching data: 상품 리스트](https://github.com/gather-around-and-code/study-js-deepdive/issues/3)    |      |
+| 2 | [차트]((https://github.com/gather-around-and-code/study-js-deepdive/issues/13)            |      |
+| 3 | [계산기]((https://github.com/gather-around-and-code/study-js-deepdive/issues/30)            |      |
+| 4 | [To do List]((https://github.com/gather-around-and-code/study-js-deepdive/issues/31)            |      |
+| 5 |             |      |
+| 6 |             |      |
 
+
+## 💪 Participants
 <a href="https://github.com/gather-around-and-code/study-js-deepdive/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=gather-around-and-code/study-js-deepdive" />
 </a>
