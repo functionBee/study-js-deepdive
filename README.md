@@ -141,6 +141,17 @@ docs: 설치 안내서에 README 업데이트
 | 5 |             |      |
 | 6 |             |      |
 
+```bash
+
+└── Projects
+    ├── 01_fetcing_data
+    │   ├── b
+    │   ├── jy
+│   │   └── README.md
+    ├── 02_chart
+    ├── 03_calculator
+    └── 04_todo_list
+```
 
 <br>
 
