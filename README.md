@@ -135,12 +135,14 @@ docs: 설치 안내서에 README 업데이트
 |   | Toy Project | 경로 |
 |:-:|:-----------:|:----:|
 | 1 | [Fetching data: 상품 리스트](https://github.com/gather-around-and-code/study-js-deepdive/issues/3)    |      |
-| 2 | [차트]((https://github.com/gather-around-and-code/study-js-deepdive/issues/13)            |      |
-| 3 | [계산기]((https://github.com/gather-around-and-code/study-js-deepdive/issues/30)            |      |
-| 4 | [To do List]((https://github.com/gather-around-and-code/study-js-deepdive/issues/31)            |      |
+| 2 | [차트](https://github.com/gather-around-and-code/study-js-deepdive/issues/13)            |      |
+| 3 | [계산기](https://github.com/gather-around-and-code/study-js-deepdive/issues/30)            |      |
+| 4 | [To do List](https://github.com/gather-around-and-code/study-js-deepdive/issues/31)            |      |
 | 5 |             |      |
 | 6 |             |      |
 
+
+<br>
 
 ## 💪 Participants
 <a href="https://github.com/gather-around-and-code/study-js-deepdive/graphs/contributors">
