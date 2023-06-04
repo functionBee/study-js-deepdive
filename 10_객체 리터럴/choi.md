@@ -35,3 +35,200 @@
 - 생성자 함수
 - object.create 메서드
 - 클래스(ES6)
+
+```javascript
+
+//객체 리터럴
+var person = {
+    name : "choi",
+    email : "email@naver.com",
+    number : "01012345678"
+}
+
+//object()생성자 함수
+var person = new object();
+//new 키워드를 이용하여 Object생성자 함수를 호출하면 비어있는 객체를 얻는다. 그러므로 비어있는 객체를 생성한다.
+person.name = "choi";
+person.email = "email@naver.com";
+person.number = "01012345678";
+
+
+//생성자 함수
+function Person(name,email,number){
+    this.name = name;
+    this.email = email;
+    this.number = number;
+}
+var person1 = new Person('choi','email@naver.com','123456');
+console.log(person1);
+var person2 = new Person('lee','lee@naver.com','987654');
+// 리터럴과 Object()로 객체를 생성하는 것과 달리, 생성자 함수를 통해 객체를 생성하면 같은 속성을 가진 객체를 여러개 생성할 수 있다.
+
+```
+
+> 객체 리터럴의 중괄호는 코드 블록을 의미하지 않는다는데 주의하자. 코드 블록의 닫는 중괄호 뒤에는 세미클론을 붙이지 않는다. 하지만 객체 리터럴은 값으로 평가되는 표현식이다. 따라서 객체 리터럴의 닫는 중괄호 뒤에는 세미콜론을 붙인다.
+
+
+<br>
+
+## 프로퍼티
+
+객체는 프로퍼티의 집합이며, 프로퍼티는 키와 값으로 구성된다.
+프로퍼티를 나열할 때는 쉼표(,)로 구분한다.
+일반적으로 마지막 프로퍼티 뒤에는 쉼표를 사용하지 않으나 사용해도 좋다.
+
+- 프로퍼티 키 : 빈 문자열을 포함하는 모든 문자열 또는 심벌값 (식별자 역할)
+- 프로퍼티 값 : 자바스크립트에서 사용할 수 있는 모든 값
+
+    - 식별자 네이밍 규칙을 따르지 않는 이름에는 반드시 따옴표를 사용해야 한다. 
+    - 프로퍼티 키를 동적으로 생성 가능 "[]"대괄호를 사용. 
+    - 빈 문자열도 사용 가능. (의미를 갖지 못하므로 권장하지 않는다.)
+    - 암묵적 타입변환을 통해 문자열이 된다. 
+    - 예약어 사용 가능하지만 권장하지 않는다. 
+    - 이미 존재하는 프로퍼티키를 중복 선언하면 나중에 선언한 프로퍼티가 먼저 선언한 프로퍼티키를 덮어쓴다.
+
+```javascript
+
+// 식별자 네이밍 규칙을 따르지 않는 이름에는 반드시 따옴표를 사용해야 한다.
+var person = {
+    firstName : 'Ung-mo',
+    'last-name':'lee'
+}
+
+// 프로퍼티 키를 동적으로 생성 가능 "[]"대괄호를 사용.
+var obj = {};
+var key = 'hello';
+obj[key] = 'world';
+// var obj = {[key]:'world'};
+
+// 빈 문자열도 사용 가능. 
+var foo = {
+    '' : ''
+}
+console.log(foo); //{'':''}
+
+```
+
+<br>
+
+## 메서드
+
+자바스크립트의 함수는 객체(일급객체)이므로 값으로 취급할 수 있기 때문에 프로퍼티 값으로 사용할 수 있다.
+프로퍼티 값이 함수일 경우 일반 함수와 구분하기위해 메서드라고 부른다.
+
+## 프로퍼티 접근
+
+- 마침표 프로퍼티 접근 연산자(.)를 사용하는 마침표 표기법
+- 대괄호 프로퍼티 접근 연산자([...])를 사용하는 대괄호 표기법 (내부에 저장하는 프로퍼티 키는 반드시 따옴표로 감싼 문자열이여야 한다) -> 자바스크립트에서 사용가능한 유효한 이름이 아니면 반드시 대괄호 표기법을 사용해야한다. 단 프로퍼티 키가 숫자로 이뤄진 문자열인 경우 따옴표를 생략 가능하다. 
+
+```javascript
+
+var person {
+    name:'lee'
+}
+
+console.log(person.name) // lee
+console.log(person['name']) // lee
+
+```
+<br>
+
+### 프로퍼티 값 갱신
+
+이미 존재하는 프로퍼티에 값을 할당하면 프로퍼티 값이 갱신된다.
+
+```javascript
+
+var person = {
+    name : 'lee'
+};
+
+person.name = 'kim';
+console.log(person); // {name:'kim'}
+
+```
+<br>
+
+### 프로퍼티 동적 생성
+
+존재하지 않는 프로퍼티에 값을 할당하면 프로퍼티가 동적으로 생성되어 추가되고 프로퍼티 값이 할당된다.
+
+```javascript   
+
+var person = {
+    name : 'lee'
+}
+
+person.age = 20;
+console.log(person); // {name:'lee',age:20}
+
+```
+<br>
+
+### 프로퍼티 삭제
+
+delete 연산자는 객체의 프로퍼티를 삭제한다. 단, delete연산자의 피연산자는 프로퍼티 값에 접근할 수 있는 표현식이어야 한다.
+
+```javascript
+
+var person = {
+    name : 'lee'
+}
+
+person.age = 20;
+
+delete person.name;
+console.log(person); // {age:20}
+
+```
+
+<br>
+
+## ES6에서 추가된 객체 리터럴의 확장 기능
+
+### 프로퍼티 축약 표현
+
+프로퍼티 값으로 변수를 사용하는 경우, 변수 이름과 프로퍼티 키가 동일한 이름일때 프로퍼티 키를 생략할 수 있다. 이때 프로퍼티 키는 변수 이름으로 자동 생성된다.
+
+```javascript
+
+ let x = 1, y = 2;
+
+const obj = {x, y};
+console.log(obj) // {x:1,y:2}
+
+```
+
+<br>
+
+### 계산된 프로퍼티 이름
+
+문자열 또는 문자열로 타입 변환할 수 있는 값으로 평가되는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도 있다.
+단, 프로퍼티 키로 사용할 표현식을 대괄호([])로 묶어야 한다. 
+
+
+### 메서드 축약 표현
+
+function키워드를 생략한 축약표현
+
+```javascript
+
+// 함수 할당
+const obj = {
+    name: 'lee',
+    sayHi : function(){
+        console.log('hi! ' + this.name);
+    }
+};
+
+// function 키워드 생략한 축약 표현
+const obj = {
+    name: 'lee',
+    sayHi() {
+        console.log('hi! ' + this.name);
+    }
+};
+
+obj.sayHi(); // hi! lee
+
+```
