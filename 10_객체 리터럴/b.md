@@ -53,7 +53,62 @@
     objectValue.name = "Jane"; // 기존 속성 값 변경
     delete objectValue.age; // 속성 제거
     ```
-- 객체는 중괄호(`{}`)를 사용하여 객체 리터럴로 생성하거나, 생성자 함수(Constructor Function) 또는 클래스(Class)를 사용하여 생성할 수 있습니다.
+- 객체를 생성하는 다양한 방법
+  - **객체 리터럴(Object Literal)**
+    - 객체 리터럴은 중괄호({})를 사용하여 객체를 생성하는 방법입니다. 속성-값 쌍을 포함하고 있습니다.
+        ```jsx
+        const obj = { 
+            property1: value1,
+            property2: value2,
+            // ...
+        };
+        ```
+  - **Object 생성자 함수**
+    - JavaScript에 내장된 Object 생성자 함수를 사용하여 객체를 생성할 수 있습니다.
+        ```jsx
+        const obj = new Object();
+        obj.property1 = value1;
+        obj.property2 = value2;
+        // ...
+        ```
+  - **생성자 함수(Constructor Function)**
+    - 사용자 정의 생성자 함수를 작성하여 객체를 생성할 수 있습니다. 생성자 함수는 new 키워드와 함께 호출됩니다.
+        ```jsx
+        function MyObject(property1, property2) {
+            this.property1 = property1;
+            this.property2 = property2;
+            // ...
+        }
+
+        const obj = new MyObject(value1, value2);
+        ```
+  - **Object.create() 메서드**
+    - Object.create() 메서드를 사용하여 새 객체를 생성하고, 해당 객체의 프로토타입을 다른 객체로 지정할 수 있습니다.
+        ```jsx
+        const prototypeObj = {
+        // ...
+        };
+
+        const obj = Object.create(prototypeObj);
+        obj.property1 = value1;
+        obj.property2 = value2;
+        // ...
+        ```
+  - **클래스 (ES6 이상)**
+    - ES6부터 도입된 클래스를 사용하여 객체를 생성할 수 있습니다. 클래스는 생성자 함수를 정의하고, 프로토타입 기반 상속과 같은 기능을 제공합니다.
+        ```jsx
+        class MyClass {
+            constructor(property1, property2) {
+                this.property1 = property1;
+                this.property2 = property2;
+                // ...
+            }
+            // ...
+        }
+
+        const obj = new MyClass(value1, value2);
+        ```
+
 - 자바스크립트는 객체지향 프로그래밍(OOP)을 완벽하게 구현한 언어는 아니지만, 객체와 프로토타입 기반의 특징을 가지고 있어 객체지향적인 프로그래밍을 수행할 수 있습니다. 또한, ES6(ES2015)부터는 객체를 생성하고 상속할 수 있는 `클래스(Class)`와 `extends` 키워드를 도입하여 좀 더 명시적인 객체지향 프로그래밍을 지원합니다.
   - 객체 지향 프로그래밍에서 객체는 클래스(Class)와 인스턴스(Instance)를 포함합니다.
     - 클래스(Class)는 객체를 생성하기 위한 템플릿 또는 청사진으로 생각할 수 있습니다. 클래스는 객체의 속성(attribute)과 메서드(method)를 정의합니다. 속성은 객체의 상태를 나타내는 변수들이며, 메서드는 객체의 동작을 정의하는 함수들입니다. 클래스는 객체를 생성하기 위한 설계도 역할을 합니다.
