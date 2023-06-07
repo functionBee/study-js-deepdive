@@ -8,7 +8,6 @@
   - [값(Value)과 리터럴(Literal)의 차이](#값value과-리터럴literal의-차이)
   - [5.3. 표현식(Expression)](#53-표현식expression)
   - [5.4. 문(Statement)](#54-문statement)
-  - [5.5 세미콜론과 세미콜론 자동 삽입 기능](#55-세미콜론과-세미콜론-자동-삽입-기능)
   - [표현식(Expression)과 문(Statement)의 차이](#표현식expression과-문statement의-차이)
   - [요약](#요약)
   - [키워드](#키워드)
@@ -116,11 +115,6 @@ for (var i = 0; i < 5; i++) {
   console.log(i);
 }
 ```
-
-<br>
-
-## 5.5 세미콜론과 세미콜론 자동 삽입 기능
-
 
 <br>
 
