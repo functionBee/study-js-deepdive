@@ -105,9 +105,9 @@ docs: 설치 안내서에 README 업데이트
 |---	|----------------	|---------	|--------	|--------	|------------------------	|
 | 1 	| 2023-05-25(목) 	 | 4장,5장   	|  b(4), jamie(5)      	|        	|  	|
 | 2 	| 2023-05-29(월)  	| 6장,7장 	 |   choi(6), jamie(7)     	|        	|                       	|
-| 3 	| 2023-06-01(목)  	| 8장,9장  	|   b(8), choi(9)     	|     	|       	|
-| 4 	| 2023-06-05(월)  	| 10장,11장  	|        	|     	|       	|
-| 5 	| 2023-06-08(목)  	| 12장   	|        	|        	|                        	|
+| 3 	| 2023-06-01(목)  	| 8장,9장  	|   b(8), jamie(9)     	|     	|       	|
+| 4 	| 2023-06-05(월)  	| 10장,11장  	|  b(10), jamie(11)  	|     	|       	|
+| 5 	| 2023-06-08(목)  	| 12장   	|  choi 	|        	|                        	|
 | 6 	| 2023-06-12(월)  	| 13장,23장   	|        	|        	|                        	|
 | 7 	| 2023-06-15(목)  	| 14장,15장   	|        	|        	|                        	|
 | 8 	| 2023-06-19(월)  	| 16장,17장   	|        	|        	|                        	|
@@ -139,7 +139,7 @@ docs: 설치 안내서에 README 업데이트
 | 2 | [차트](https://github.com/gather-around-and-code/study-js-deepdive/issues/13)            |      |
 | 3 | [계산기](https://github.com/gather-around-and-code/study-js-deepdive/issues/30)            |      |
 | 4 | [To do List](https://github.com/gather-around-and-code/study-js-deepdive/issues/31)            |      |
-| 5 |             |      |
+| 5 | [SoundBook](https://github.com/gather-around-and-code/study-js-deepdive/issues/47)    |      |
 | 6 |             |      |
 
 ```bash
@@ -151,7 +151,8 @@ docs: 설치 안내서에 README 업데이트
     │   └── README.md
     ├── 02_chart
     ├── 03_calculator
-    └── 04_todo_list
+    ├── 04_todo_list
+    └── ...
 ```
 
 <br>
