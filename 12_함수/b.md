@@ -76,23 +76,29 @@ square(3, 4); // 인수(argument): 3, 4
 
 ```jsx
 // 자바스크립트 함수는 다양한 방법으로 생성할 수 있습니다.
-// 1. 함수 표현식 (Function Expression):
+// 1. 함수 선언문(function Declaration):
+function square(width, height) {
+  var result = width * height;
+  return result;
+};
+
+// 2. 함수 표현식 (Function Expression):
 const square = function(width, height) {
   var result = width * height;
   return result;
 };
 
-// 2. 화살표 함수 (Arrow Function):
+// 3. 함수 생성자 (Function Constructor):
+const square = new Function('width', 'height', 'var result = width * height; return result;');
+
+// 4. 화살표 함수 (Arrow Function):
 const square = (width, height) => {
   var result = width * height;
   return result;
 };
 
-// 3. 화살표 함수 (with implicit return):
+// 4. 화살표 함수 (with implicit return):
 const square = (width, height) => width * height;
-
-// 4. 함수 생성자 (Function Constructor):
-const square = new Function('width', 'height', 'var result = width * height; return result;');
 ```
 
 <br>
@@ -187,3 +193,6 @@ const functionName = function(parameter1, parameter2, ...) {
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions)
+- [**자바스크립트 함수를 선언하는 여섯가지 방법**](https://yceffort.kr/2020/10/6-different-ways-to-declare-javascript-function)
+- [**함수 표현식 vs 함수 선언식**](https://joshua1988.github.io/web-development/javascript/function-expressions-vs-declarations/)
+- [**How JavaScript works: the different ways of declaring a function + 5 best practices**](https://medium.com/sessionstack-blog/how-javascript-works-the-different-ways-of-declaring-a-function-5-best-practices-8a0324c06fe2)
