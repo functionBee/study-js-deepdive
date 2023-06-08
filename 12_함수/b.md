@@ -100,7 +100,11 @@ const square = (width, height) => {
 // 4. 화살표 함수 (with implicit return):
 const square = (width, height) => width * height;
 ```
-
+- 일반 함수(Regular function): 아무 값이나 반환할 수 있으며, 호출 후 항상 완료됩니다.
+- 제너레이터 함수(Generator function): [Generator 객체](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator)를 반환하며, [yield 연산자](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield)를 사용하여 일시 정지하고 재개할 수 있습니다.
+- 비동기 함수(Async function): [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)를 반환하며, [await 연산자](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)를 사용하여 일시 정지하고 재개할 수 있습니다.
+- 비동기 제너레이터 함수(Async generator function): [AsyncGenerator 객체](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator)를 반환하며, await와 yield 연산자를 모두 사용할 수 있습니다.
+  
 <br>
 
 ## 12-2. 함수를 사용하는 이유
@@ -150,10 +154,155 @@ const functionName = function(parameter1, parameter2, ...) {
 
 ## 12-4. 함수 정의
 
-### 12-4-1. 함수 선언문
-### 12-4-2. 함수 표현식
+각 종류의 함수마다 세 가지 정의 방법이 있습니다:
+| 함수 정의 방법         |                          함수 종류                                 |
+|---------------------|----------------------------------------------------------------------------|
+| 선언(Declaration)   | `function`, `function*`, `async function`, `async function*`                |
+| 표현식(Expression)  | `function`, `function*`, `async function`, `async function*`               |
+| 생성자(Constructor) | `Function()`, `GeneratorFunction()`, `AsyncFunction()`, `AsyncGeneratorFunction()` |
+
+```jsx
+// 함수 정의 방식의 예: 
+// Regular function (일반 함수)의 경우
+// 1. 선언(Declaration) 방법
+function sum(a, b) {
+  return a + b;
+}
+
+// 2. 표현식(Expression) 방법
+const sum = function(a, b){
+  return a + b;
+}
+
+// 3. 생성자(Constructor) 방법
+const add = new Function("a", "b", "return a + b")
+```
+
+### 12-4-1. 함수 선언문(function declaration)
+
+```jsx
+// function 키워드를 사용하여 함수 정의
+function greet(name) {
+  result = `Hello, ${name}!`
+  return result;
+}
+
+greet('B') // 함수 호출
+```
+
+- 함수 선언문은 `function` 키워드를 사용하여 함수를 직접 정의하고, 해당 함수의 이름을 지정합니다.
+- 함수 선언문으로 정의된 함수는 변수명(`greet`라는 변수)을 통해 호출됩니다.
+- 함수 선언문은 일반적으로 스크립트 상단이나 함수의 시작 부분에 작성하는 것을 권장합니다. 이는 코드의 가독성과 유지 보수성을 향상 시키는데 도움이 됩니다.
+- 스크립트의 상단에 함수 선언문을 작성하면 해당 함수 어디서든 호출 할 수 있습니다.
+- JavaScript에서는 호이스팅(Hoisting)이라는 메커니즘을 통해 함수 선언문을 스코프의 상단으로 끌어올리기 때문에, 선언문 이전에 함수를 호출해도 문제가 발생하지 않는다.
+  
+```jsx
+greet('B') // 함수 선언 전에 함수 호출
+
+function greet(name) {
+  result = `Hello, ${name}!`
+  return result;
+}
+``` 
+`greet`함수 호출이 함수 선언문 `function greet() { ... }` 전에 위치해 있습니다. 하지만 함수 호출은 여전히 정상적으로 동작합니다. 이는 호이스팅(hoisting)이라는 메커니즘 때문인데, 함수 선언문은 컴파일 단계에서 해당 스코프의 상단으로 끌어올려지기 때문입니다.
+
+### 12-4-2. 함수 표현식(function expression)
+
+```jsx
+// 함수 표현식을 사용하여 변수에 함수 할당
+const greet = function(name) {
+  result = `Hello, ${name}!`;
+  return result;
+}
+
+greet('B'); // 함수를 호출
+```
+
+- 함수 표현식은 `function` 키워드를 사용하여 익명 함수(Anonymous Function)를 생성하고, 이를 `greet` 변수에 할당하여 정의하는 방법입니다.
+- 함수 표현식은 변수명을 통해 함수를 호출하거나 참조할 수 있습니다.
+- 함수 표현식은 변수에 할당된 후에 사용할 수 있습니다.
+
+```jsx
+// 변수에 할당하기 전에 함수를 호출하면 오류가 발생합니다.
+greet('B'); // ReferenceError: greet is not defined
+
+const greet = function(name) {
+  result = `Hello, ${name}!`;
+  return result;
+};
+```
+`greet` 함수는 변수에 할당되기 전에 호출하면 오류가 발생합니다.
+
+- 함수 표현식은 익명 함수뿐만 아니라 기명 함수(Named Function)를 정의할 수도 있습니다.
+
+```jsx
+const greet = function greet(name) {
+  result = `Hello, ${name}!`;
+  return result;
+};
+
+greet('B'); // 함수를 호출
+```
+`greet` 변수에 할당된 함수 표현식은 이름인 `greet`인 함수를 정의하고 있습니다.
+
+- 함수 표현식 내에서 `greet`이라는 이름을 사용하여 재귀적으로 함수를 호출할 수 있습니다.
+  - 재귀 호출을 사용할 때에는 종료 조건을 잘 설정하여 무한 재귀에 빠지지 않도록 주의해야 합니다.
+
+```jsx
+const greet = function greet(name) {
+  if (name === 'B') {
+    return `Hello, ${name}!`;
+  } else {
+    return greet('B'); // 재귀 호출
+  }
+};
+
+greet('A'); // 함수 호출
+```
+`name`이 'B'인 경우에는 인사말을 반환하고, 그렇지 않은 경우에는 재귀적으로 `greet('B')`를 호출하여 'B'에 대한 인사말을 반환합니다. 이를 통해 재귀적인 호출을 구현할 수 있습니다.
+
 ### 12-4-3. 함수 생성 시점과 함수 호이스팅
-### 12-4-4. Function 생성자 함수
+함수 선언은 직접 함수를 정의하고, 함수 표현식은 변수에 함수를 할당하여 정의합니다. 이러한 차이점은 호이스팅과 스코프에서 영향을 받으며, 프로그램의 구조와 실행 컨텍스트에 따라 사용하는 것이 좋습니다.
+
+```jsx
+// 함수 선언문
+function greet(name) {
+  result = `Hello, ${name}!`
+  return result;
+}
+
+greet('B')
+```
+
+```jsx
+// 함수 표현식 - 익명 함수
+const greet = function(name) {
+  result = `Hello, ${name}!`;
+  return result;
+}
+
+greet('B');
+```
+
+```jsx
+// 함수 표현식 - 기명 함수
+const greet = function greet(name) {
+  result = `Hello, ${name}!`;
+  return result;
+};
+
+greet('B');
+```
+
+더글라스 크락포드(Douglas Crockford)는 함수 선언문 대신 함수 표현식을 사용할 것을 권장합니다. 그 이유에는 호이스팅(Hoisting) 동작과 가독성/유지보수성 측면이 포함됩니다.
+
+- 호이스팅에 대해서 설명하면, 함수 선언문은 스코프 맨 위로 호이스팅되기 때문에 함수를 선언하기 전에도 함수를 호출할 수 있습니다. 반면에 함수 표현식은 변수 할당과 동일하게 동작하므로, 변수가 선언된 이후에만 함수를 호출할 수 있습니다.
+- 함수 표현식을 사용하면 코드의 가독성과 유지보수성을 향상시킬 수 있습니다. 함수 표현식은 변수에 함수를 할당하는 형태이므로, 변수 이름을 통해 함수의 역할이나 의도를 명확하게 표현할 수 있습니다. 함수 선언문의 경우에는 함수의 이름만으로는 함수가 어떤 동작을 하는지 파악하기 어려울 수 있습니다.
+
+따라서 더글라스 크락포드의 권장에 따라 함수 표현식을 사용하여 함수를 정의하는 것은 코드의 명확성과 일관성을 높일 수 있습니다. 그러나 이는 개발자의 선호도나 프로젝트의 코드 스타일 가이드에 따라 다를 수 있으므로, 상황에 맞게 결정하는 것이 중요합니다.
+
+
+### 12-4-4. Function 생성자 함수(Constructor function)
 ### 12-4-5. 화살표 함수
 
 <br>
@@ -185,14 +334,49 @@ const functionName = function(parameter1, parameter2, ...) {
 <br>
 
 ## 키워드
+- 함수(function)
+- 매개변수(parameter)
+- 인수(argument)
+- 반환 값(return value)
+- 함수 호출(function call/invoke)
+- 코드의 재사용
+- 유지보수의 편의성
+- 코드의 신뢰성
+- 코드의 가독성
+- 함수 리터럴
+- 기명 함수(named function)
+- 익명 함수(anonymous function)
+- 의사 코드(pseudo code)
+- 함수 선언문(function declaration)
+- 함수 표현식(function expression)
+- 객체 리터럴
+- 일급 객체
+- 함수 호이스팅(function hoisting)
+- 생성자 함수(constructor function)
+- 화살표 함수(arrow function)
+- 값에 의한 전달
+- 참조에 의한 전달
+- 옵저버 패턴(observer pattern)
+- 불변 객체(immutable object)
+- 방어적 복사(defensive copy)
+- 깊은 복사(deep copy)
+- 즉시 실행 함수
+- 재귀 함수
+- 중첩 함수
+- 콜백 함수
+- 고차 함수
+- 순수 함수
+- 비순수 함수
 
 <br>
 
 ## Reference
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+- [**Defining functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#defining_functions)
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
 - [**Functions - MDN Docs**](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions)
 - [**자바스크립트 함수를 선언하는 여섯가지 방법**](https://yceffort.kr/2020/10/6-different-ways-to-declare-javascript-function)
 - [**함수 표현식 vs 함수 선언식**](https://joshua1988.github.io/web-development/javascript/function-expressions-vs-declarations/)
 - [**How JavaScript works: the different ways of declaring a function + 5 best practices**](https://medium.com/sessionstack-blog/how-javascript-works-the-different-ways-of-declaring-a-function-5-best-practices-8a0324c06fe2)
+- [**Function Expression**](https://www.geeksforgeeks.org/javascript-function-expression/)
