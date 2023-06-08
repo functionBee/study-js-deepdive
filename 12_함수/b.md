@@ -200,7 +200,7 @@ greet('B') // 함수 호출
 greet('B') // 함수 선언 전에 함수 호출
 
 function greet(name) {
-  result = `Hello, ${name}!`
+  let result = `Hello, ${name}!`
   return result;
 }
 ``` 
@@ -211,7 +211,7 @@ function greet(name) {
 ```jsx
 // 함수 표현식을 사용하여 변수에 함수 할당
 const greet = function(name) {
-  result = `Hello, ${name}!`;
+  let result = `Hello, ${name}!`;
   return result;
 }
 
@@ -227,7 +227,7 @@ greet('B'); // 함수를 호출
 greet('B'); // ReferenceError: greet is not defined
 
 const greet = function(name) {
-  result = `Hello, ${name}!`;
+  let result = `Hello, ${name}!`;
   return result;
 };
 ```
@@ -237,7 +237,7 @@ const greet = function(name) {
 
 ```jsx
 const greet = function greet(name) {
-  result = `Hello, ${name}!`;
+  let result = `Hello, ${name}!`;
   return result;
 };
 
@@ -267,7 +267,7 @@ greet('A'); // 함수 호출
 ```jsx
 // 함수 선언문
 function greet(name) {
-  result = `Hello, ${name}!`
+  let result = `Hello, ${name}!`
   return result;
 }
 
@@ -277,7 +277,7 @@ greet('B')
 ```jsx
 // 함수 표현식 - 익명 함수
 const greet = function(name) {
-  result = `Hello, ${name}!`;
+  let result = `Hello, ${name}!`;
   return result;
 }
 
@@ -287,7 +287,7 @@ greet('B');
 ```jsx
 // 함수 표현식 - 기명 함수
 const greet = function greet(name) {
-  result = `Hello, ${name}!`;
+  let result = `Hello, ${name}!`;
   return result;
 };
 
@@ -296,14 +296,38 @@ greet('B');
 
 더글라스 크락포드(Douglas Crockford)는 함수 선언문 대신 함수 표현식을 사용할 것을 권장합니다. 그 이유에는 호이스팅(Hoisting) 동작과 가독성/유지보수성 측면이 포함됩니다.
 
-- 호이스팅에 대해서 설명하면, 함수 선언문은 스코프 맨 위로 호이스팅되기 때문에 함수를 선언하기 전에도 함수를 호출할 수 있습니다. 반면에 함수 표현식은 변수 할당과 동일하게 동작하므로, 변수가 선언된 이후에만 함수를 호출할 수 있습니다.
-- 함수 표현식을 사용하면 코드의 가독성과 유지보수성을 향상시킬 수 있습니다. 함수 표현식은 변수에 함수를 할당하는 형태이므로, 변수 이름을 통해 함수의 역할이나 의도를 명확하게 표현할 수 있습니다. 함수 선언문의 경우에는 함수의 이름만으로는 함수가 어떤 동작을 하는지 파악하기 어려울 수 있습니다.
+호이스팅에 대해서 설명하면, 함수 선언문은 스코프 맨 위로 호이스팅되기 때문에 함수를 선언하기 전에도 함수를 호출할 수 있습니다. 반면에 함수 표현식은 변수 할당과 동일하게 동작하므로, 변수가 선언된 이후에만 함수를 호출할 수 있습니다.
+
+함수 표현식을 사용하면 코드의 가독성과 유지보수성을 향상시킬 수 있습니다. 함수 표현식은 변수에 함수를 할당하는 형태이므로, 변수 이름을 통해 함수의 역할이나 의도를 명확하게 표현할 수 있습니다. 함수 선언문의 경우에는 함수의 이름만으로는 함수가 어떤 동작을 하는지 파악하기 어려울 수 있습니다.
 
 따라서 더글라스 크락포드의 권장에 따라 함수 표현식을 사용하여 함수를 정의하는 것은 코드의 명확성과 일관성을 높일 수 있습니다. 그러나 이는 개발자의 선호도나 프로젝트의 코드 스타일 가이드에 따라 다를 수 있으므로, 상황에 맞게 결정하는 것이 중요합니다.
 
 
 ### 12-4-4. Function 생성자 함수(Constructor function)
+
+```jsx
+const greet = new Function("name", `return "Hello, " + name + "!";`);
+
+greet("B") // 함수 호출
+```
+
+- `function 생성자 함수`로 생성한 함수는 `클로저(Closure)`를 생성하지 않는 등, 함수 선언문이나 함수 표현식으로 생성한 함수와 다르게 동작합니다.
+- 일반적으로 `Function 생성자 함수`를 사용하여 함수를 생성하는 방법은 권장되지 않습니다.
+  - `Function 생성자 함수`를 사용하여 함수를 생성하면 문자열로 전달된 인수를 기반으로 새로운 함수 객체를 생성할 수 있습니다. 이는 보안상의 이슈를 야기할 수 있고, 코드의 안전성과 신뢰성을 저하시킬 수 있습니다. 또한, 생성된 함수는 자체적인 독립된 스코프를 가지며 외부 변수에 대한 클로저를 생성하지 않습니다. 때문에 동적으로 함수를 생성해야 하는 특수한 상황에서는 필요한 경우 사용합니다.
+
 ### 12-4-5. 화살표 함수
+
+```jsx
+const greet = (name) => {
+  let result = `Hello, ${name}!`;
+  return result;
+};
+
+greet("B") // 함수 호출
+```
+
+- 화살표 함수는 항상 익명 함수로 정의합니다.
+- 화살표 함수는 생성자 함수로 사용할 수 없으며, 기존 함수와 `this` 바인딩 방식이 다르고, `prototype` 프러퍼티가 없으며 `arguments` 객체를 생성하지 않습니다.
 
 <br>
 
@@ -353,6 +377,7 @@ greet('B');
 - 일급 객체
 - 함수 호이스팅(function hoisting)
 - 생성자 함수(constructor function)
+- 클로저(Closure)
 - 화살표 함수(arrow function)
 - 값에 의한 전달
 - 참조에 의한 전달
