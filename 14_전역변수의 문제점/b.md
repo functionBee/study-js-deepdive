@@ -129,27 +129,31 @@ console.log(foo); // ReferenceError: foo is not defined
 ### 14-3-2. 네임스페이스 객체
 
 **네임스페이스(Namespace)**
-- 구분이 가능하도록 정해 높은 범위나 영역 ⇒ 이름 공간을 선언하여 달느 공간과 구분하도록 함
-- 자바스크립트는 네임스페이싱(Namespacing; 객체나 변수가 겹치지 않는 안전한 소스 코드 생성)을 위한 기능을 지원하지 않는다.
-- 네임 스페이스 객체에 또 다른 네임스페이스 객체를  프로퍼티로 추가해서 네임스페이스를 계층적으로 구성할 수 있다.
-- 네임 스페이스를 분리해서 식별자 충돌을 방지하는 효과는 있으나 네임스페이스 객체 자체가 전역 변수에 할당하므로 그다지 유용해 보이지 않는다…
+- 네임스페이스(Namespace)는 구분 가능한 범위나 영역을 정의하여 이름 충돌을 방지하기 위한 개념입니다.
+- 자바스크립트는 네임스페이싱을 위한 별도의 기능을 제공하지 않습니다. 그러나 객체를 활용하여 네임스페이스를 구성할 수 있습니다.
+- 네임스페이스 객체에 다른 네임스페이스 객체를 프로퍼티로 추가하여 계층 구조로 구성할 수 있습니다.
 
 ```jsx
-var namespaceObject = {}; //전역 네임 스페이스 객체
+// 네임스페이스 객체를 사용하여 식별자 충돌을 방지
+var namespaceObject = {}; // 전역 네임스페이스 객체
+
 namespaceObject.name = 'Tada';
-console.log(namespaceObject.name); // Tada
+console.log(namespaceObject.name); // 출력: Tada
 ```
-> 전역에 네임스페이스 역할을 담당할 객체를 생성하고, 전역 변수처럼 사용하고 싶은 변수를 프로퍼티로 추가하는 방법
+위 예시에서는 전역에 네임스페이스 역할을 담당할 객체를 생성하고, 그 객체에 원하는 변수를 프로퍼티로 추가하는 방법을 보여줍니다.
 
 ```jsx
-var namespaceObject = {}; //전역 네임 스페이스 객체
+// 계층적인 네임스페이스를 구성하는 방법
+var namespaceObject = {}; // 전역 네임스페이스 객체
 
 namespaceObject.theOtherObject = {
     type: 'person'
-}
+};
 
-console.log(namespaceObject.theOtherObject.type); // person
+console.log(namespaceObject.theOtherObject.type); // 출력: person
 ```
+위 예시에서는 `namespaceObject` 네임스페이스 객체에 `theOtherObject`라는 네임스페이스 객체를 추가하고, 그 안에 `type` 프로퍼티를 정의한 후 값을 할당합니다. 이렇게 함으로써 변수 또는 객체의 이름 충돌을 방지할 수 있습니다.
+
 
 <br>
 
