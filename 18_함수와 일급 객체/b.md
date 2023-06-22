@@ -267,8 +267,8 @@ console.log(sum(1, 2, 3, 4, 5)); // 15
 
 ```jsx
 // 18-8
-function sum(args...) {
-    return args.redece((pre, cur) => pre + cur, 0);
+function sum(...args) {
+    return args.reduce((pre, cur) => pre + cur, 0);
 }
 console.log(sum(1, 2)); // 3
 console.log(sum(1, 2, 3, 4, 5)); // 15
