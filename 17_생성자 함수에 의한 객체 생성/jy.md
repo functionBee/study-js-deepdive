@@ -141,5 +141,67 @@ console.log(circle2.getDiameter()); // 20
   
 ### 17.2.4 내부 메서드 [[Call]]과 [[Construct]]
 
+함수 선언문 또는 함수 표현식으로 정의한 함수는 생성자 함수로서 호출할 수 있습니다. 즉, `new` 연산자와 함께 호출하여 객체를 생성할 수 있습니다.
 
+- 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드를 모두 가지고 있으므로 일반 객체와 동일하게 동작할 수 있습니다.
 
+  ```jsx
+  // 함수는 객체입니다.
+  function foo() {}
+
+  // 함수는 객체이므로 프로퍼티를 소유할 수 있습니다.
+  foo.prop = 10;
+
+  // 함수는 객체이므로 메서드를 소유할 수 있습니다.
+  foo.method = function () {
+    console.log(this.prop);
+  };
+
+  foo.method(); // 10
+  ```
+
+- 함수는 일반 객체와 달리 호출할 수 있습니다. 함수가 일반 함수로서 호출되면 함수 객체의 내부 메서드 `[[Call]]`이 호출되고, 함수가 new 연산자와 함께 생성자 함수로 호출되면 내부 메서드 `[[Construct]]`가 호출된다.
+
+```jsx
+function foo() {}
+
+// 일반적인 함수로서 호출: [[Call]]이 호출됩니다.
+foo();
+
+// 생성자 함수로서 호출: [[Construct]]가 호출됩니다.
+new foo();
+```
+
+- 함수 객체를 callable이라 하며, 생성자 함수로 호출할 수 있으면 constructor, 아니면 non-constructor라고 부릅니다.
+
+### 17.2.5 constructor와 non-constructor의 구분
+
+자바스크립트 엔진은 함수 정의를 평가하여 함수 객체를 생성할 때 함수 정의 방식에 따라 함수를 `constructor`와 `non-constructor`로 구분합니다.
+
+- `constructor` : 함수 선언문, 함수 표현식, 클래스
+- `non-constructor` : 메서드(ES6 메서드 축약 표현), 화살표 함수
+
+```jsx
+// 일방 함수 정의: 함수 선언문, 함수 표현식
+function foo() {}
+const bar = function () {};
+
+// 프로퍼티 x의 값으로 할당된 것은 일반 함수로 정의된 함수입니다. 
+const baz = {
+  x: function () {}
+};
+
+new foo(); // foo {}
+new bar(); // bar {}
+new baz.x(); // x {}
+
+const arrow = () => {};
+
+new arrow(); // TypeError: arrow is not a constructor
+
+const obj = {
+  x() {}
+};
+
+new obj.x(); // TypeError: obj.x is not a constructor
+```
