@@ -162,15 +162,15 @@ console.log(circle2.getDiameter()); // 20
 
 - 함수는 일반 객체와 달리 호출할 수 있습니다. 함수가 일반 함수로서 호출되면 함수 객체의 내부 메서드 `[[Call]]`이 호출되고, 함수가 new 연산자와 함께 생성자 함수로 호출되면 내부 메서드 `[[Construct]]`가 호출된다.
 
-```jsx
-function foo() {}
-
-// 일반적인 함수로서 호출: [[Call]]이 호출됩니다.
-foo();
-
-// 생성자 함수로서 호출: [[Construct]]가 호출됩니다.
-new foo();
-```
+  ```jsx
+  function foo() {}
+  
+  // 일반적인 함수로서 호출: [[Call]]이 호출됩니다.
+  foo();
+  
+  // 생성자 함수로서 호출: [[Construct]]가 호출됩니다.
+  new foo();
+  ```
 
 - 함수 객체를 callable이라 하며, 생성자 함수로 호출할 수 있으면 constructor, 아니면 non-constructor라고 부릅니다.
 
