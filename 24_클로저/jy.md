@@ -2,7 +2,7 @@
 
 클로저는 **함수와 그 함수가 선언된 렉시컬 환경과의 조합**입니다.
 
-```
+```jsx
 const x = 1;
 
 function outerFunc(){
@@ -18,7 +18,7 @@ function outerFunc(){
 outerFunc();
 ```
 
-```
+```jsx
 const x = 1;
 
 function outerFunc(){
@@ -52,7 +52,7 @@ outerFunc();
 
 - 외부 함수보다 중첩 함수가 더 오래 유지되는 경우 중첩 함수는 이미 생명 주기가 종료한 외부 함수의 변수를 참조할 수 있습니다. 이러한 중첩 함수를 클로저라고 부릅니다.
 
-  ```
+  ```jsx
   const x = 1;
 
   function outer() {
@@ -83,7 +83,7 @@ outerFunc();
 
 - **예제 1**
 
-  ```
+  ```jsx
   // 카운트 상태 변수
   let num = 0;
 
@@ -106,7 +106,7 @@ outerFunc();
 
 - **예제 2**
 
-  ```
+  ```jsx
   const increase = function(){
     let num = 0;
     
@@ -125,7 +125,7 @@ outerFunc();
 
 - **예제 3**
 
-  ```
+  ```jsx
   const increase = (function () {
     let num = 0;
     
@@ -148,7 +148,7 @@ outerFunc();
 
 - **예제 4**
 
-  ```
+  ```jsx
   const counter = (function() {
     // 카운트 상태 변수
     let num = 0;
@@ -174,7 +174,7 @@ outerFunc();
 
 - **예제 5**
 
-  ```
+  ```jsx
   const counter = (function () {
     let counter = 0;
     
@@ -214,7 +214,7 @@ outerFunc();
 
 - 자바스크립트는 접근 제한자를 제공하지 않으며, 객체의 모든 프로퍼티와 메서드는 기본적으로 외부에 공개되어 있습니다.
 
-```
+```jsx
 const Person = (function () {
   let _age = 0; // private
   
@@ -240,7 +240,7 @@ console.log(me._age); // undefined
 
 - `sayHi` 메서드는 종료된 즉시실행함수의 지역변수 `_age`를 참조할 수 있는 클로저입니다. `sayHi`를 통해서만 `_age`에 접근 가능합니다.
 
-```
+```jsx
 const me = new Person('Lee', 20);
 me.sayHi(); // Hi! My name is Lee. I am 20.
 
@@ -255,7 +255,7 @@ me.sayHi(); // Hi! My name is Lee. I am 30.
 
 ## 24.6 자주 발생하는 실수
 
-```
+```jsx
 var funcs = [];
 
 for (var i = 0 ; i < 3 ; i++){
@@ -273,7 +273,7 @@ for (var j = 0; j < funcs.length; j++){
 이를 해결하기 위해 다음과 같은 방법을 사용할 수 있습니다.
 - `let`, `const` 등의 ES6문법 사용
   
-  ```
+  ```jsx
   const funcs = [];
 
   for (let i = 0 ; i < 3 ; i++){
@@ -289,7 +289,7 @@ for (var j = 0; j < funcs.length; j++){
 
 - 고차 함수 사용
   
-  ```
+  ```jsx
   // 요소가 3개인 배열을 생성하고 배열의 인덱스를 반환하는 함수를 요소로 추가
   // 배열의 요소로 추가된 함수들은 모두 클로저
   const funcs = Array.from(new Array(3), (_, i) => () => i);
@@ -297,4 +297,3 @@ for (var j = 0; j < funcs.length; j++){
   // 배열의 요소로 추가된 함수들을 순차적으로 호출
   funcs.forEach(f => console.log(f())); // 0 1 2
   ```
-  
