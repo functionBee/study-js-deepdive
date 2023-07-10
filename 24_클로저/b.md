@@ -1,16 +1,29 @@
-## 24장. 클로저
+# 24장. 클로저(Closure)
 
+<br>
+s
+**[목차]**
 
+- 24장. 클로저
+  - [24-1. 렉시컬 스코프](#24-1-렉시컬-스코프)
+  - [24-2. 함수 객체의 내부 슬록 \[Environment\]](#24-2-함수-객체의-내부-슬록-environment)
+  - [24-3. 클로저와 렉시컬 환경](#24-3-클로저와-렉시컬-환경)
+  - [24-4. 클로저의 활용](#24-4-클로저의-활용)
+  - [24-5. 캡슐화와 정보 은닉](#24-5-캡슐화와-정보-은닉)
+  - [24-6. 자주 발생하는 실수](#24-6-자주-발생하는-실수)
+
+<br>
 
 ```javascript
-// 24-01
+// 24-01.
+// 함수가 선언된 렉시컬 환경
 const x = 1;
 
 function outerFunc() {
   const x = 10;
 
   function innerFunc() {
-    console.log(x); // 10
+    `console.log(x)`; // 10
   }
 
   innerFunc();
@@ -19,10 +32,9 @@ function outerFunc() {
 outerFunc();
 ```
 
-
-
 ```javascript
 // 24-02
+// 자바스크립트는 렉시컬 스코프를 따르는 프로그래밍 언어
 const x = 1;
 
 function outerFunc() {
@@ -517,9 +529,9 @@ for (let i = 0; i < funcs.length; i++) {
 }
 ```
 
-# 24-23
 
 ```javascript
+// 24-23
 // 요소가 3개인 배열을 생성하고 배열의 인덱스를 반환하는 함수를 요소로 추가한다.
 // 배열의 요소로 추가된 함수들은 모두 클로저다.
 const funcs = Array.from(new Array(3), (_, i) => () => i); // (3) [ƒ, ƒ, ƒ]
