@@ -1,4 +1,4 @@
-**목차**
+**[목차]**
 - 37장. `Set`과 `Map`
   - [37.1 `Set`](#371-set)
     - [37.1.1 `Set` 객체의 생성](#3711-set-객체의-생성)
@@ -24,67 +24,36 @@
 
 # 37장. `Set`과 `Map`
 
-"Set"과 "Map" 데이터 구조를 사용하여 수정된 배열이나 객체 집합과 관련하여 고유한 값의 집합과 키-값 쌍을 저장할 수 있습니다.
-
-```jsx
-// Set을 생성하고 값들을 추가합니다
-const exampleSet = new Set();
-exampleSet.add(1);
-exampleSet.add(2);
-exampleSet.add(3);
-
-// 값들을 확인합니다
-console.log(exampleSet.has(2)); // true
-console.log(exampleSet.has(4)); // false
-
-// Set의 크기를 가져옵니다
-console.log(exampleSet.size); // 3
-
-// 모든 값을 루프로 순회합니다
-exampleSet.forEach((value) => {
-  console.log(value);
-});
-
-// Map을 생성하고 값들을 추가합니다
-const exampleMap = new Map();
-exampleMap.set("name", "B");
-exampleMap.set("age", 30);
-exampleMap.set("isStudent", true);
-
-// 키를 통해 값들에 접근합니다
-console.log(exampleMap.get("name")); // "B"
-console.log(exampleMap.get("age")); // 30
-console.log(exampleMap.get("isStudent")); // true
-
-// Map의 크기를 가져옵니다
-console.log(exampleMap.size); // 3
-
-// 모든 키-값 쌍을 루프로 순회합니다
-exampleMap.forEach((value, key) => {
-  console.log(`${key}: ${value}`);
-});
-```
-
-1. `Set` (집합): 
-   - JavaScript `Set`은 고유한 값의 컬렉션을 유지하기 위해 사용됩니다. 따라서 Set에 동일한 값을 여러 번 추가하려고 하더라도 한 번만 추가됩니다. Set의 주요 특징은 중복 요소를 허용하지 않는다는 것입니다.
-2. `Map` (맵): 
-   - JavaScript `Map`은 키-값 쌍을 저장하기 위해 사용됩니다. 이 구조의 주요 특징은 다른 유형의 키를 사용하여 값을 연결할 수 있다는 것입니다.
-
-
-
 ## 37.1 `Set`
-- `Set`은 자바스크립트의 내장 객체로, 고유한 값들의 컬렉션을 저장하며 중복된 값은 허용하지 않습니다.
--  `Set`은 자바스크립트에서 고유한 값을 관리하기 위한 유용한 데이터 구조입니다.
+- `Set`은 자바스크립트의 내장 객체로, 고유한 값들의 컬렉션을 저장하며 중복된 값은 허용하지 않기 때문에, 동일한 값을 여러 번 추가하더라도 하나의 값만 저장됩니다. 이를 통해 중복 요소를 효과적으로 제거할 수 있습니다.
+- `Set`은 자바스크립트에서 고유한 값을 관리하기 위한 유용한 데이터 구조입니다.
 -  요소의 개수 확인, 추가, 존재 여부 확인, 삭제, 순회 등의 기능을 제공하며, 집합 연산은 배열과 같은 다른 자료 구조로 변환한 뒤에 수행할 수 있습니다.
 
 ### 37.1.1 `Set` 객체의 생성
-- `Set` 객체는 `new Set()` 생성자를 사용하여 생성합니다. 초기 값을 가진 이터러블(예: 배열)을 전달하거나, 나중에 `add()` 메소드를 사용하여 요소를 추가할 수 있습니다.
+`Set` 객체를 생성하는 방법은 두 가지가 있습니다.
 
-```jsx
-// Set 생성
-const exampleSet = new Set(); // 빈 Set 생성
-const exampleSetWithInitialValues = new Set([1, 2, 3]); // 초기 값을 가진 Set 생성
-```
+1. `new Set(iterable)`:
+    - `Set` 생성자를 호출하여 새로운 `Set` 객체를 생성할 수 있습니다. 이때, iterable 매개변수를 사용하여 초기 값을 가진 이터러블(예: 배열)을 전달할 수 있습니다.
+    - `Set` 객체는 이터러블의 각 요소를 중복되지 않는 값으로 저장합니다.
+
+    ```jsx
+    // 배열을 이용하여 Set 객체 생성
+    const numbers = [1, 2, 3, 2, 4, 5];
+    const uniqueNumbersSet = new Set(numbers);
+    console.log(uniqueNumbersSet); // 출력: Set { 1, 2, 3, 4, 5 }
+    ```
+
+2. `add(value)`: 
+   - 이미 생성된 `Set` 객체에 값을 추가하는 경우 `add()` 메소드를 사용할 수 있습니다. 이 메소드를 사용하면 나중에 요소를 하나씩 추가할 수 있습니다.
+
+    ```jsx
+    // add() 메소드를 사용하여 Set 객체에 요소 추가
+    const fruitSet = new Set();
+    fruitSet.add("apple");
+    fruitSet.add("banana");
+    fruitSet.add("apple"); // 중복된 값은 무시됨
+    console.log(fruitSet); // 출력: Set { 'apple', 'banana' }
+    ```
 
 ### 37.1.2 요소 개수 확인
 - `Set` 객체의 요소 개수를 확인하기 위해 `size` 프로퍼티를 사용합니다.
@@ -92,6 +61,48 @@ const exampleSetWithInitialValues = new Set([1, 2, 3]); // 초기 값을 가진 
 ```jsx
 // Set의 요소 개수 확인
 console.log(exampleSet.size); // 0 (빈 Set의 크기)
+```
+
+```jsx
+// size 프로퍼티를 사용과 관련해서 다른 예제:
+
+// 사용자가 카트에 추가할 수 있는 상품 객체들이라고 가정합니다.
+const product1 = { id: 1, name: '티셔츠', price: 20 };
+const product2 = { id: 2, name: '청바지', price: 50 };
+const product3 = { id: 3, name: '신발', price: 80 };
+
+// 쇼핑 카트를 Set으로 초기화합니다.
+const shoppingCart = new Set(); 
+// !Set 객체가 중복을 자동으로 처리하기 때문에, 
+// !쇼핑 카트에서 각 상품이 고유하다는 것을 보장하고 중복 항목을 신경 쓰지 않고 쉽게 항목을 관리할 수 있습니다. 
+
+// 상품을 쇼핑 카트에 추가하는 함수
+function addToCart(product) {
+  shoppingCart.add(product);
+}
+
+// 상품을 쇼핑 카트에서 제거하는 함수
+function removeFromCart(product) {
+  shoppingCart.delete(product);
+}
+
+// 쇼핑 카트의 아이템 개수를 size 프로퍼티를 사용하여 얻는 함수
+function getCartSize() {
+  return shoppingCart.size;
+}
+
+// 상품을 쇼핑 카트에 추가합니다.
+addToCart(product1);
+addToCart(product2);
+addToCart(product3);
+addToCart(product1); // 이 중복은 무시됩니다.
+
+console.log("카트 크기:", getCartSize()); // 출력: 카트 크기: 3
+
+// 쇼핑 카트에서 상품을 제거합니다.
+removeFromCart(product2);
+
+console.log("카트 크기:", getCartSize()); // 출력: 카트 크기: 2
 ```
 
 ### 37.1.3 요소 추가
@@ -193,7 +204,55 @@ console.log("차집합:", difference); // [1, 2]
 
 ## `Set` 과 `Map` 비교
 
+"Set"과 "Map" 데이터 구조를 사용하여 수정된 배열이나 객체 집합과 관련하여 고유한 값의 집합과 키-값 쌍을 저장할 수 있습니다.
+
 ```jsx
+// Set을 생성하고 값들을 추가합니다
+const exampleSet = new Set();
+exampleSet.add(1);
+exampleSet.add(2);
+exampleSet.add(3);
+
+// 값들을 확인합니다
+console.log(exampleSet.has(2)); // true
+console.log(exampleSet.has(4)); // false
+
+// Set의 크기를 가져옵니다
+console.log(exampleSet.size); // 3
+
+// 모든 값을 루프로 순회합니다
+exampleSet.forEach((value) => {
+  console.log(value);
+});
+
+// Map을 생성하고 값들을 추가합니다
+const exampleMap = new Map();
+exampleMap.set("name", "B");
+exampleMap.set("age", 30);
+exampleMap.set("isStudent", true);
+
+// 키를 통해 값들에 접근합니다
+console.log(exampleMap.get("name")); // "B"
+console.log(exampleMap.get("age")); // 30
+console.log(exampleMap.get("isStudent")); // true
+
+// Map의 크기를 가져옵니다
+console.log(exampleMap.size); // 3
+
+// 모든 키-값 쌍을 루프로 순회합니다
+exampleMap.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});
+```
+
+1. `Set` (집합): 
+   - JavaScript `Set`은 고유한 값의 컬렉션을 유지하기 위해 사용됩니다. 따라서 Set에 동일한 값을 여러 번 추가하려고 하더라도 한 번만 추가됩니다. Set의 주요 특징은 중복 요소를 허용하지 않는다는 것입니다.
+2. `Map` (맵): 
+   - JavaScript `Map`은 키-값 쌍을 저장하기 위해 사용됩니다. 이 구조의 주요 특징은 다른 유형의 키를 사용하여 값을 연결할 수 있다는 것입니다.
+
+
+```jsx
+// 더 나아가서,,,
 // Set과 Map을 사용하여 고유 방문자와 방문 횟수 추적
 const uniqueVisitors = new Set();
 const visitCounts = new Map();
@@ -248,3 +307,7 @@ console.log("방문 횟수:", visitCounts); // Map { 1001 => 2, 1002 => 3, 1003 
 6. **크기**:
    - `Set`: `Set`의 크기(요소의 개수)는 size 속성을 사용하여 얻을 수 있습니다.
    - `Map`: `Map`의 크기(키-값 쌍의 개수)는 size 속성을 사용하여 얻을 수 있습니다.
+
+
+## Reference
+- [MDN: Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
