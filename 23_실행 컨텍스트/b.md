@@ -23,9 +23,11 @@
 **Variable Environment와 Lexical Environment의 구성과 차이**
 - Variable Environment과 Lexical Environment은 각각 환경 레코드(Environment Record)와 외부 렉시컬 환경 참조(Outer Lexical Environment Reference)로 구성됩니다.
    - **환경 레코드(Environment Record)**: 현재 실행 컨텍스트에서 선언된 변수, 함수 선언 등을 기록하는 객체입니다. 변수와 함수에 대한 실제 바인딩이 여기에 저장됩니다.
-   - 외부 렉시컬 환경 참조(Outer Lexical Environment Reference): 현재 실행 컨텍스트의 상위 스코프(외부 함수, 전역 스코프 등)를 참조하는 링크입니다.
-- 변수 환경은 현재 실행 컨텍스트 내에서 선언된 변수와 함수 선언 등의 정보를 저장하는 반면, 렉시컬 환경은 스코프 체인과 클로저를 구현하는 데 사용됩니다.
-- 변수 환경은 변수 및 함수에 대한 식별자와 값을 저장하는 반면, 렉시컬 환경은 스코프 체인을 구성하여 변수 및 함수에 대한 검색 순서를 결정합니다.
+   - **외부 렉시컬 환경 참조(Outer Lexical Environment Reference)**: 현재 실행 컨텍스트의 상위 스코프(외부 함수, 전역 스코프 등)를 참조하는 링크입니다.
+- 이 두 환경의 가장 큰 차이점은 변수 및 함수의 범위를 어떻게 관리하느냐에 따라 결정됩니다.
+  - Variable Environment는 현재 실행 중인 코드 블록에 대한 변수 및 함수 선언을 저장하는 공간입니다. 이는 함수 내부의 변수 및 함수 선언과 그 범위를 관리합니다.
+  - Lexical Environment는 변수 및 함수가 정의된 위치에 따라 결정되는 환경을 나타냅니다.이는 변수와 함수의 스코프 및 클로저를 관리합니다.
+
 
 <br>
 
@@ -92,7 +94,7 @@ function myFunction() {
 
 myFunction();
 
-// 3. 모듈 코드 (Module Code)
+// 3. 모듈 코드 (Module Code)****
 // 모듈 파일: myModule.js
 export const moduleVariable = 'Module Variable';
 export function moduleFunction() {
