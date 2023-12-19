@@ -3,6 +3,8 @@
 '모던 자바스크립트: 딥다이브'의 4장에서 변수에 대한 내용과 MDN 문서들을 참고하였습니다.
 참고한 문서의 링크 정보는 아래에서 확인하실 수 있습니다.
 
+<br>
+
 - [4장. 변수(Variables)](#4장-변수variables)
   - [4-1. 변수(Variable)란 무엇인가? 왜 필요한가?](#4-1-변수variable란-무엇인가-왜-필요한가)
   - [4-2. 식별자(JavaScript identifier)](#4-2-식별자javascript-identifier)
