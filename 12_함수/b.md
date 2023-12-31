@@ -89,6 +89,64 @@ sum(100); // 5050
 
 ## 12-3. 함수 리터럴
 
+- 함수는 객체 타입의 값이므로 값의 성질을 갖습니다. 따라서 함수도 리터럴을 통해 생성할 수 있습니다.
+- 함수 리터럴은 function 키워드, 함수 이름, 매개변수 목록, 함수 몸체로 구성됩니다.
+
+```jsx
+// 예제 12-04: 변수에 함수 리터럴을 할당
+var f = function add(x, y) {
+  return x + y;
+};
+```
+
+**함수 리터럴의 구성요소**:
+
+- 함수 이름:
+  - 함수 이름은 식별자로 구성된다.
+  - 함수 이름은 함수 몸체 내에서만 참조할 수 있는 식별자이다.
+  - 함수 이름의 생략이 가능하다. 이때 함수를 익명 함수(anonymous function)이라 한다.
+  - 함수 이름이 있는 함수를 기명 함수(named function)라 한다.
+- 매개변수 목록:
+  - 매개변수는 함수 몸체 내에서 변수와 동일하게 취급된다.
+  - 함수를 호출할 때 지정한 인수는 매개변수에 할당된다.
+  - 매개변수는 쉼표로 구분하며, 0개 이상의 매개변수를 선언할 수 있다.
+- 함수 몸체:
+  - 함수가 호출되었을 때 일괄적으로 실행될 문들을 하나의 실행 단위로 정의한 코드 블록이다.
+  - 함수 몸체는 함수 호출에 의해 실행된다. 이때 함수 몸체의 문들은 실행되어야 할 시점이 결정된다.
+
+```jsx
+// 함수 리터럴 syntax
+function [함수 이름](매개변수1, 매개변수2, ...) {
+  [함수 몸체]
+}
+```
+
+- **함수는 객체다.** 따라서 함수도 객체처럼 프로퍼티를 가질 수 있다.
+- 함수는 일반 객체와 달리 호출할 수 있으므로, 함수는 일반 객체가 가지지 못한 함수 객체만의 특징을 갖는다.
+
+```jsx
+// 함수 객체의 프로퍼티
+function greet(name) {
+  console.log(`안녕하세요, ${name}님!`);
+}
+
+// 함수 객체는 prototype 프로퍼티를 소유합니다.
+// 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성될 객체의 부모 역할을 하는 프로토타입 객체를 가리킵니다.
+greet.prototype; // {constructor: ƒ}
+
+// 함수 객체는 arguments 프로퍼티를 소유합니다.
+// arguments 객체는 함수 호출 시 전달된 인수들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체이며, 함수 내부에서 지역 변수처럼 사용됩니다.
+greet.arguments; // null
+
+// 함수 객체는 caller 프로퍼티를 소유합니다.
+// caller 프로퍼티는 자신을 호출한 함수를 가리킵니다.
+greet.caller; // null
+
+// 함수 객체는 name 프로퍼티를 소유합니다.
+// name 프로퍼티는 함수 이름을 나타냅니다.
+greet.name; // "greet"
+```
+
 <br>
 
 ## 12-4. 함수 정의
@@ -189,6 +247,10 @@ sum(100); // 5050
 - [**함수 표현식 vs 함수 선언식**](https://joshua1988.github.io/web-development/javascript/function-expressions-vs-declarations/)
 - [**How JavaScript works: the different ways of declaring a function + 5 best practices**](https://medium.com/sessionstack-blog/how-javascript-works-the-different-ways-of-declaring-a-function-5-best-practices-8a0324c06fe2)
 - [**Function Expression**](https://www.geeksforgeeks.org/javascript-function-expression/)
+
+```
+
+```
 
 ```
 
