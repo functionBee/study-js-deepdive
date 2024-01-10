@@ -189,7 +189,389 @@ greet.name; // "greet"
 
 ### 12-7-3. 중첩 함수
 
-### 12-7-4. 콜백 함수
+### 12-7-4. 콜백 함수(Callback function)
+
+```jsx
+// 콜백 함수
+function callback() {
+  console.log("callback");
+}
+
+// 함수의 매개변수를 통해 콜백 함수를 전달받음
+function higherOrderFunction(func) {
+  // 전달받은 콜백 함수를 호출
+  func();
+}
+
+// 함수를 호출하면서 콜백 함수를 전달함
+higherOrderFunction(callback); // callback
+```
+
+- 콜백 함수는 함수의 매개변수를 통해 다른 함수의 내부로 전달되는 함수를 말합니다.
+- 콜백 함수는 제어권을 다른 함수에게 넘겨줌으로써 특정 코드의 실행을 위임할 수 있습니다.
+- 매개변수를 통해 함수의 외부에서 콜백 함수를 전달받은 함수를 함수형 프로그래밍에서는 고차 함수(higher-order function)라고 부릅니다.
+- 고차함수에 콜백 함수를 전달할 때 콜백 함수를 호출하지 않고, 함수 자체를 전달해야 합니다.
+
+```jsx
+// 콜백 함수를 호출하지 않고 함수 자체를 전달해야 하는 이유:
+// 콜백 함수를 호출하면서 인수를 전달할 수 없기 때문입니다.
+function forEach(arr, callback) {
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr[i]);
+  }
+}
+
+const arr = [1, 2, 3];
+forEach(arr, console.log); // 1 2 3
+forEach(arr, alert); // 1 2 3
+```
+
+- 콜백 함수가 고차 함수 내부에서만 호출된다면 콜백 함수를 익명 함수 리터럴로 정의하면서 곧바로 고차 함수에 전달할 수 있습니다.
+
+```jsx
+// 콜백 함수를 익명 함수 리터럴로 정의하면서 곧바로 고차 함수에 전달
+const arr = [1, 2, 3];
+
+forEach(arr, function (item) {
+  console.log(item);
+}); // 1 2 3
+```
+
+```jsx
+// 콜백 함수를 사용하는 고차 함수 map, filter, reduce
+// map: 배열의 모든 요소를 순회하면서 인수로 전달받은 콜백 함수를 반복 호출하고, 그 결과를 배열에 담아 반환합니다.
+// filter: 배열의 모든 요소를 순회하면서 인수로 전달받은 콜백 함수를 반복 호출하고, 그 결과가 참인 요소만을 배열에 담아 반환합니다.
+// reduce: 배열의 모든 요소를 순회하면서 인수로 전달받은 콜백 함수를 반복 호출하고, 그 결과를 반환합니다.
+const arr = [1, 2, 3];
+
+// map
+const mappedArr = arr.map(function (item) {
+  return item * 2;
+});
+
+console.log(mappedArr); // [2, 4, 6]
+
+// filter
+const filteredArr = arr.filter(function (item) {
+  return item % 2;
+});
+
+console.log(filteredArr); // [1, 3]
+
+// reduce
+const reducedArr = arr.reduce(function (acc, cur) {
+  return acc + cur;
+}, 0);
+
+console.log(reducedArr); // 6
+```
+
+- 콜백 함수도 고차 함수에 전달되는 함수이므로 일급 객체의 특징을 모두 갖습니다.
+- 일급 객체의 특징을 갖는 함수를 일급 함수(first-class function)라고 부릅니다.
+- 일급 함수란 다음과 같은 조건을 만족하는 함수를 말합니다.
+- 일급 객체의 특징은 다음과 같습니다:
+  - 무명의 리터럴로 표현이 가능하다.
+  - 변수나 자료구조(객체, 배열 등)에 저장할 수 있다.
+  - 함수의 매개변수에 전달할 수 있다.
+  - 함수의 반환값으로 사용할 수 있다.
+
+```jsx
+// 일급 함수의 특징
+// 1. 무명의 리터럴로 표현이 가능하다.
+const increase = function (num) {
+  return ++num;
+};
+
+const decrease = function (num) {
+  return --num;
+};
+
+// 2. 변수나 자료구조(객체, 배열 등)에 저장할 수 있다.
+const predicates = { increase, decrease };
+
+// 3. 함수의 매개변수에 함수를 전달할 수 있다.
+// 4. 함수의 반환값으로 사용할 수 있다.
+function makeCounter(predicate) {
+  let num = 0;
+
+  return function () {
+    num = predicate(num);
+    return num;
+  };
+}
+
+const increaser = makeCounter(predicates.increase);
+console.log(increaser()); // 1
+console.log(increaser()); // 2
+const decreaser = makeCounter(predicates.decrease);
+console.log(decreaser()); // -1
+console.log(decreaser()); // -2
+```
+
+- 콜백함수는 함수형 프로그래밍 패러다임뿐만 아니라 비동기 처리에도 많이 사용됩니다.
+- 비동기 처리란 처리가 종료할 때까지 코드의 실행을 멈추지 않고 다음 코드를 먼저 실행하는 자바스크립트의 특성을 의미합니다.
+
+```jsx
+// 비동기 처리
+function getData(callback) {
+  // 비동기 처리를 수행하는 비동기 함수
+  setTimeout(function () {
+    const data = 10;
+    callback(data);
+  }, 1000);
+}
+
+getData(function (data) {
+  // 콜백 함수
+  console.log(data); // 10
+});
+```
+
+```jsx
+// 콜백 함수를 이용한 이벤트 처리
+const $button = document.querySelector("button");
+
+$button.addEventListener("click", function (event) {
+  console.log("button is clicked!");
+});
+```
+
+```jsx
+// 콜백함수를 사용한 비동기 처리
+function getData(callback) {
+  // 비동기 처리를 수행하는 비동기 함수
+  setTimeout(function () {
+    const data = 10;
+    callback(data);
+  }, 1000);
+}
+
+getData(function (data) {
+  // 콜백 함수
+  console.log(data); // 10
+});
+```
+
+(미리) 45-1. 비동기 처리를 위한 콜백 함수의 단점
+
+- 45-1-1. 콜백 지옥(callback hell)
+  - setTimeout 함수는 비동기 함수이므로 콜백 함수를 전달받아 비동기 처리를 수행합니다.
+  - setTimeout의 콜백 함수는 setTimeout 함수의 처리가 종료된 이후에 호출됩니다.
+  - 이에 setTimeout 함수 내부의 콜백 함수에서 처리 결과를 외부로 반환하거나 상위 스코프의 변수에 할당하면 기대한 대로 동작하지 않습니다.
+
+```jsx
+// 비동기 처리를 위한 콜백 함수의 단점
+// 콜백 지옥(callback hell)
+function add10(a, callback) {
+  setTimeout(function () {
+    callback(a + 10);
+  }, 1000);
+}
+
+add10(5, function (res) {
+  add10(res, function (res) {
+    add10(res, function (res) {
+      console.log(res); // 35
+    });
+  });
+});
+```
+
+- 콜백 지옥을 해결하는 밥법은 익명의 콜백 함수를 모두 기명 함수로 전환하는 것입니다.
+
+```jsx
+// 콜백 지옥 해결 - 기명 함수로 전환
+let list = "";
+
+const addList = (res) => {
+  list = res;
+  console.log(list);
+
+  setTimeout(addList2, 1000);
+};
+
+const addList2 = () => {
+  list += res;
+  console.log(list);
+
+  setTimeout(addList3, 1000);
+};
+
+setTimeout(addList, 1000);
+```
+
+- 45-1-2. 에러 처리의 한계
+  - 비동기 함수의 처리 결과를 콜백 함수를 통해 전달받는다면 에러 처리를 위해 콜백 함수를 추가로 전달받아야 합니다.
+  - 이는 콜백 지옥을 야기할 수 있습니다.
+
+```jsx
+// 비동기 처리를 위한 콜백 함수의 단점
+// 에러 처리의 한계
+function add20(a, callback) {
+  setTimeout(function () {
+    callback(a + 20);
+  }, 1000);
+}
+
+add20(5, function (res) {
+  try {
+    add20(res, function (res) {
+      try {
+        add20(res, function (res) {
+          console.log(res); // 65
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
+```
+
+- 이를 해결하기 위해 Promise가 등장했습니다.
+- Promise는 비동기 처리를 위한 콜백 함수의 단점을 보완하고 개선하기 위해 ES6에서 도입된 비동기 처리에 사용되는 객체입니다.
+- Promise 생성자 함수는 비동기 처리를 수행할 콜백 함수를 인수로 전달받습니다. 이 함수는 resolve와 reject 함수를 인수로 전달받습니다.
+
+```jsx
+// Promise 객체의 생성
+const promise = new Promise((resolve, reject) => {
+  // 비동기 처리를 수행하는 콜백 함수
+  if (/* 비동기 처리 성공 */) {
+    resolve('result');
+  } else { /* 비동기 처리 실패 */
+    reject('failure reason');
+  }
+});
+```
+
+```jsx
+// GET 요청을 위한 비동기 함수
+const promiseGet = (url) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.send();
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        // 비동기 처리가 성공하면 resolve 메서드를 호출합니다.
+        resolve(JSON.parse(xhr.response));
+      } else {
+        // 비동기 처리가 실패하면 reject 메서드를 호출합니다.
+        reject(new Error(xhr.status));
+      }
+    };
+  });
+};
+// promiseGet 함수는 Promise 객체를 반환합니다.
+// Promise 객체는 then 메서드를 갖고 있습니다.
+// then 메서드는 Promise 객체의 비동기 처리가 성공했을 때, 실패했을 때 호출할 콜백 함수를 인수로 전달받습니다.
+const printUsers = () => {
+  promiseGet("https://jsonplaceholder.typicode.com/users")
+    .then((users) => {
+      console.log(users);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+```
+
+- 비동기 작업의 동기적 표현:
+  - 비동기 작업의 동기적 표현이란 비동기 작업을 동기적으로 표현하되, 비동기 작업의 결과를 반환하는 것을 말합니다.
+  - Promise 객체의 then 메서드는 Promise 객체를 반환합니다.
+  - 따라서 then 메서드를 호출하면 Promise 객체를 반환하므로, then 메서드를 호출한 Promise 객체의 then 메서드를 호출할 수 있습니다.
+  - 이를 통해 비동기 작업을 동기적으로 표현할 수 있습니다.
+
+```jsx
+// 비동기 작업의 동기적 표현
+promiseGet("https://jsonplaceholder.typicode.com/users")
+  .then((users) => {
+    console.log(users);
+    return promiseGet(
+      "https://jsonplaceholder.typicode.com/posts?userId=" + users[0].id
+    );
+  })
+  .then((posts) => {
+    console.log(posts);
+    return promiseGet(
+      "https://jsonplaceholder.typicode.com/comments?postId=" + posts[0].id
+    );
+  })
+  .then((comments) => {
+    console.log(comments);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+```
+
+- 비동기 작업의 동기적 표현: Generator
+  - Generator는 비동기 작업의 동기적 표현을 위해 ES6에서 도입된 함수입니다.
+  - Generator 함수는 비동기 처리를 수행하는 yield 키워드를 사용할 수 있습니다.
+  - yield 키워드는 함수의 실행을 멈추고 함수 호출자에게 제어권을 양도합니다.
+  - Generator 함수는 호출하면 함수의 실행을 제어할 수 있는 제너레이터 객체를 반환합니다.
+  - 제너레이터 객체의 next 메서드를 호출하면 Generator 함수의 yield 키워드를 만날 때까지 함수의 실행을 진행합니다.
+  - next 메서드가 반환하는 객체는 value와 done 프로퍼티를 갖습니다.
+  - value 프로퍼티는 yield 키워드 뒤에 오는 표현식의 평가 결과를 값으로 갖습니다.
+  - done 프로퍼티는 Generator 함수의 실행이 종료되었는지를 나타내는 불리언 값입니다.
+
+```jsx
+// Generator 함수
+function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+  return 100;
+}
+
+// Generator 함수를 호출하면 제너레이터 객체를 반환합니다.
+const generator = gen();
+
+// 제너레이터 객체의 next 메서드를 호출하면 yield 키워드를 만날 때까지 함수의 실행을 진행합니다.
+console.log(generator.next()); // {value: 1, done: false}
+console.log(generator.next()); // {value: 2, done: false}
+console.log(generator.next()); // {value: 3, done: false}
+console.log(generator.next()); // {value: 100, done: true}
+```
+
+```jsx
+// Generator 함수를 사용한 비동기 처리
+function* asyncFunc() {
+  console.log("asyncFunc");
+  const data = yield $.get("https://jsonplaceholder.typicode.com/users");
+  console.log(data);
+}
+
+const generator = asyncFunc();
+generator.next().value.then((res) => {
+  generator.next(res).value.then((res) => {
+    generator.next(res);
+  });
+});
+```
+
+- 비동기 작업의 동기적 표현: Promise + Async/await
+  - async/await는 비동기 작업의 동기적 표현을 위해 ES8에서 도입된 문법입니다.
+  - async 함수는 비동기 처리를 수행하는 함수를 동기적으로 표현할 수 있게 해주는 함수입니다.
+  - async 함수는 함수 몸체 내부에서 await 키워드를 사용할 수 있습니다.
+  - await 키워드는 async 함수의 실행을 일시 중지하고, await 키워드 뒤에 오는 Promise 객체가 처리될 때까지 기다린 다음 async 함수의 실행을 재개합니다.
+  - await 키워드는 async 함수 내부에서만 사용할 수 있습니다.
+  - await 키워드는 Promise 객체를 반환합니다.
+  - async 함수는 항상 Promise 객체를 반환합니다.
+
+```jsx
+// async/await를 사용한 비동기 처리
+async function asyncFunc() {
+  console.log("asyncFunc");
+  const data = await $.get("https://jsonplaceholder.typicode.com/users");
+  console.log(data);
+}
+
+asyncFunc();
+```
 
 ### 12-7-5. 순수함수와 비순수 함수
 
