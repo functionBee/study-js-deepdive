@@ -431,9 +431,34 @@ console.log(foo.constructor === Function); // true
 
 ## 19-5. 프로토타입의 생성 시점
 
+- 프로토타입은 생성자 함수가 생성되는 시점에 더불어 생성됩니다.
+- 프로토타입과 생성자 함수는 단독으로 존재할 수 없습니다. 프로토타입은 언제나 생성자 함수와 쌍으로 존재합니다.
+- 생성자 함수는 사용자가 정의한 사용자 정의 생성자 함수와 빌트인 생성자 함수로 나뉩니다.
+
+```jsx
+// 생성자 함수
+function Person(name) {
+  this.name = name;
+}
+
+// 사용자 정의 생성자 함수
+const me = new Person("Lee");
+
+// 빌트인 생성자 함수
+const str = new String("Lee");
+const num = new Number(123);
+const bool = new Boolean(true);
+const func = new Function("x", "return x * x");
+const arr = new Array(1, 2, 3);
+const regExp = new RegExp(/ab+c/i);
+const date = new Date();
+```
+
 <br>
 
 ### 19-5.1 사용자 정의 생성자 함수와 프로토타입 생성 시점
+
+- 일반 함수로 정의한 함수 객체는 new 연산자와 함께 생성자 함수로서 호출할 수 있습니다.
 
 <br>
 
