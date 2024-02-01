@@ -427,6 +427,57 @@ startInfiniteScroll();
 
 ## 41-3-1. `디바운스(Debouncing)`
 
+사용자의 입력이나 다양한 이벤트가 발생할 때마다 즉시 처리하면 불필요한 CPU 사이클이나 API 호출, 그리고 성능 저하를 초래할 수 있습니다. 이러한 문제를 해결하기 위해 디바운싱이라는 기술을 사용합니다. 디바운스는 사용자의 연속적인 액션을 일정 시간 동안 그룹화하여 마지막 액션만을 처리하도록 지연시키는 기법입니다. 이를 통해 과도한 처리를 방지하고 효율적인 성능을 유지할 수 있습니다.
+
+```jsx
+/**
+ * 이메일 형식을 검증하는 함수
+ * @param {string} email - 검증할 이메일 주소.
+ */
+function validateEmail(email) {
+  // 이메일 형식 검사
+  if (/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    console.log("유효한 이메일 형식입니다.");
+  } else {
+    console.log("유효하지 않은 이메일 형식입니다.");
+  }
+}
+
+/**
+ * 디바운스 함수. 함수의 실행을 지연시키는 역할을 합니다.
+ * @param {Function} func - 디바운스를 적용할 함수.
+ * @param {number} wait - 지연시킬 시간 (밀리초 단위).
+ * @return {Function} - 디바운스가 적용된 함수.
+ */
+function debounce(func, wait) {
+  let timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// 디바운싱 적용
+// 사용자가 입력을 마치고 500ms 동안 추가 입력이 없을 때 validateEmail 함수를 실행합니다.
+const debouncedValidateEmail = debounce(validateEmail, 500);
+
+/**
+ * 이메일 입력 필드의 이벤트 리스너
+ * 'keyup' 이벤트 발생 시 디바운싱된 검증 함수를 실행합니다.
+ */
+document.getElementById("emailInput").addEventListener("keyup", function (e) {
+  debouncedValidateEmail(e.target.value);
+});
+```
+
+이렇게 하면 사용자가 타이핑하는 동안에는 유효성 검사를 수행하지 않고, 타이핑을 멈춘 후에만 유효성 검사를 수행하여 불필요한 계산과 리소스 낭비를 줄일 수 있습니다
+
 <br>
 
 ## 41-3-2. `스로틀링(Throttling)`
