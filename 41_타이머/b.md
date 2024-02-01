@@ -22,6 +22,7 @@
   - [41-3-1. `디바운스(Debouncing)`](#41-3-1-디바운스debouncing)
   - [41-3-2. `스로틀(Throttling)`](#41-3-2-스로틀throttling)
   - [References](#references)
+  - [Articles](#articles)
 
 <br>
 
@@ -431,3 +432,6 @@ startInfiniteScroll();
 - [MDN, setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
 - [Modern JavaScript, setTimeout & setInterval](https://ko.javascript.info/settimeout-setinterval)
 - [Node.js, Discover JavaScript Timers](https://nodejs.org/en/learn/asynchronous-work/discover-javascript-timers)
+
+## Articles
+- [JavaScript Timers: Everything you need to know](https://medium.com/edge-coders/javascript-timers-everything-you-need-to-know-5f31eaa37162)
