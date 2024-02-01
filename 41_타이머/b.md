@@ -7,10 +7,12 @@
   - [타이머 생성 함수](#타이머-생성-함수)
   - [타이머 제거 함수](#타이머-제거-함수)
   - [41-2. 타이머 함수](#41-2-타이머-함수)
-  - [41-2-1. `setTimeout` / `clearTimeout`](#41-2-1-settimeout--cleartimeout)
+    - [41-2-1. `setTimeout` / `clearTimeout`](#41-2-1-settimeout--cleartimeout)
     - [`setTimeout`](#settimeout)
     - [`clearTimeout(timeoutID)`](#cleartimeouttimeoutid)
-    - [더 나아가서](#더-나아가서)
+    - [**\[환경별 `setTimeout` 차이\]**](#환경별-settimeout-차이)
+    - [**\[지연 시간이 `0ms`일 경우\]**](#지연-시간이-0ms일-경우)
+    - [**\[`setImmediate()`\]**](#setimmediate)
     - [`Example`](#example)
   - [41-2-2. `setInterval` / `clearInterval`](#41-2-2-setinterval--clearinterval)
     - [`setInterval`](#setinterval)
@@ -142,7 +144,7 @@ const intervalId = showCurrentTime(() => {
 
 <br>
 
-## 41-2-1. `setTimeout` / `clearTimeout`
+### 41-2-1. `setTimeout` / `clearTimeout`
 
 ### `setTimeout`
 `setTimeout` 함수는 <u>지정된 시간이 지난 후에 함수를 한 번 실행합니다.</u>
@@ -171,8 +173,7 @@ let timeoutID = setTimeout(function() {
 clearTimeout(timeoutID); // `setTimeout`에서 반환된 타이머 ID를 인자로 받아 해당 타이머를 취소합니다.
 ```
 
-### 더 나아가서
-**[환경별 `setTimeout` 차이]**
+### **[환경별 `setTimeout` 차이]**
 
 | 환경       | 반환 값      | 타입       | 취소 함수 사용 예제     |
 |------------|--------------|------------|------------------------|
@@ -205,12 +206,12 @@ const timer = setTimeout(() => {
 }, 2000);
 
 // 타이머 취소
-clearTimeout(timer); // 여기서 `timer`는 객체입니다. 이 객체에는 타이머를 취소하는 데 필요한 정보가 담겨 있습니다.
+clearTimeout(timer); // 기서 `timer`는 객체입니다. 이 객체에는 타이머를 취소하는 데 필요한 정보가 담겨 있습니다.
 ```
 
 > [브라우저는 HTML5의 timers section을 준수](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers)
 
-**[지연 시간이 `0ms`일 경우]**
+### **[지연 시간이 `0ms`일 경우]**
 
 `setTimeout` 함수에 지연 시간을 `0`으로 설정하면,
 콜백 함수는 현재 실행 중인 함수가 끝난 직후에 가능한 가장 빠른 시점에 실행됩니다.
@@ -266,7 +267,7 @@ sequenceDiagram
 6. 콜백 함수가 실행되면서 'after'가 콘솔에 출력됩니다.
 
 
-**[[`setImmediate()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate)]**
+### **[[`setImmediate()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate)]**
 이 함수는 `Internet Explorer`와 `Edge` 브라우저에서 지원되며 `setTimeout`과 유사한 기능을 하지만, 표준이 아니기 때문에 다른 브라우저에서는 사용할 수 없습니다. 그러나 `Node.js 환경`에서는 `setImmediate()`가 표준 함수로서, `setTimeout(() => {}, 0)`과 유사하게 즉시 실행되어야 할 작업을 큐에 넣어 비동기적으로 처리하는 데 사용할 수 있습니다.
 
 
