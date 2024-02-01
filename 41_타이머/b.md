@@ -17,9 +17,10 @@
   - [41-2-2. `setInterval` / `clearInterval`](#41-2-2-setinterval--clearinterval)
     - [`setInterval`](#setinterval)
     - [`clearInterval(intervalID)`](#clearintervalintervalid)
-  - [41-3. 디바운스와 스로틀](#41-3-디바운스와-스로틀)
-  - [41-3-1. 디바운스](#41-3-1-디바운스)
-  - [41-3-2. 스로틀](#41-3-2-스로틀)
+    - [`Example`](#example-1)
+  - [41-3. `디바운스(Debouncing)`와 `스로틀(Throttling)`](#41-3-디바운스debouncing와-스로틀throttling)
+  - [41-3-1. `디바운스(Debouncing)`](#41-3-1-디바운스debouncing)
+  - [41-3-2. `스로틀(Throttling)`](#41-3-2-스로틀throttling)
   - [References](#references)
 
 <br>
@@ -306,7 +307,7 @@ document.getElementById('emailInput').addEventListener('keyup', function (e) {
 ## 41-2-2. `setInterval` / `clearInterval`
 
 ### `setInterval`
-`setInterval`함수는 <u>지정된 시간 간격마다 함수를 반복해서 실행합니다.</u>
+`setInterval()` 함수는 JavaScript에서 주기적으로 특정 작업을 반복하고자 할 때 사용하는 타이머 함수입니다. `setTimeout()`과 비슷하지만, `setTimeout()`은 지정된 시간이 지난 후 콜백 함수를 단 한 번만 실행하는 반면, `setInterval()`은 <u>지정된 시간 간격마다 콜백 함수를 무한히 반복해서 실행합니다.</u>
 
 ```jsx
 // Syntax
@@ -324,6 +325,8 @@ setInterval(function() {
 
 ### `clearInterval(intervalID)`
 
+타이머를 중지하려면 `clearInterval()` 함수를 사용해야 합니다. `setInterval()` 함수는 타이머 ID를 반환하는데, 이 ID를 `clearInterval()` 함수에 전달하여 타이머를 멈출 수 있습니다.
+
 ```jsx
 let intervalID = setInterval(function() {
   console.log('더 이상 반복해서 실행되지 않습니다.');
@@ -332,18 +335,94 @@ let intervalID = setInterval(function() {
 clearInterval(intervalID); // `setInterval`에서 반환된 타이머 ID를 인자로 받아 해당 타이머를 취소합니다.
 ```
 
+일반적으로 `setInterval` 콜백 함수 내에서 `clearInterval`을 호출하여 자동으로 다시 실행할지 멈출지를 결정합니다.
+
+```jsx
+const interval = setInterval(() => {
+  if (App.somethingIWait === 'arrived') {
+    clearInterval(interval);
+  }
+  // 그 외의 경우에는 다른 작업을 수행
+}, 100);
+```
+
+특정 조건이 충족될 때 타이머를 자동으로 중지하려면 `setInterval()` 콜백 함수 내부에서 `clearInterval()`을 호출할 수 있습니다.
+
+```jsx
+const interval = setInterval(() => {
+  if (App.somethingIWait === 'arrived') {
+    clearInterval(interval);
+  } else {
+    // 'arrived'가 아닐 경우 반복해서 실행할 작업들
+  }
+}, 100);
+```
+
+이렇게 `setInterval()`과 `clearInterval()`을 사용하면, 조건에 따라 반복 실행을 관리할 수 있으며, 필요에 따라 타이머를 멈출 수 있습니다.
+
+### `Example`
+
+**[무한 스크롤 구현]**
+1. 스크롤 이벤트 감지: `window` 객체의 `scroll` 이벤트를 사용하여 스크롤 위치를 감지합니다.
+2. 추가 콘텐트 로드: 스크롤 위치가 특정 임계값에 도달하면, `AJAX` 요청 등을 사용하여 추가 콘텐트를 로드합니다.
+3. 스크롤 이벤트 제어: `setInterval`과 `clearInterval`을 사용하여 일정한 간격으로 스크롤 이벤트를 감지하고, 필요한 경우 추가 콘텐트 로드를 실행합니다.
+
+```javascript
+// 스크롤 이벤트 제어를 위한 변수
+let scrollInterval;
+
+/**
+ * 스크롤 이벤트를 처리합니다.
+ * 스크롤 위치를 확인하고 추가 콘텐트를 로드하는 로직을 구현합니다.
+ */
+function handleScroll() {
+  // 스크롤 위치가 특정 임계값에 도달하면 추가 콘텐트를 로드합니다.
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    loadAdditionalContent();
+  }
+}
+
+/**
+ * 추가 콘텐트 로드 로직을 구현합니다.
+ * 이 함수는 실제 추가 콘텐트 로드 로직에 맞게 재정의해야 합니다.
+ */
+function loadAdditionalContent() {
+  // 추가 콘텐트 로드 로직 구현
+}
+
+/**
+ * 무한 스크롤을 시작합니다.
+ * 200ms마다 스크롤 이벤트 핸들러를 호출합니다.
+ */
+function startInfiniteScroll() {
+  scrollInterval = setInterval(handleScroll, 200);
+}
+
+/**
+ * 무한 스크롤을 정지합니다.
+ * 스크롤 이벤트 핸들러를 위해 설정된 인터벌을 해제합니다.
+ */
+function stopInfiniteScroll() {
+  clearInterval(scrollInterval);
+}
+
+// 무한 스크롤 시작
+startInfiniteScroll();
+```
+
+> 위 무한 스크롤을 구현하는 예제는 `setInterval` 함수는 지정된 시간 간격마다 특정 코드 또는 함수를 반복해서 실행하는 개념을 이해하기 위한 용도입니다. 무한 스크롤의 경우 사용자가 페이지 끝에 도달하는지를 확인하고, 콘텐트를 불러오기 때문에 `setInterval` 보다는 'scroll' 이벤트 리스너나 'Intersection Observer API'를 사용하는 것이......
+
 <br>
 
-## 41-3. 디바운스와 스로틀
+## 41-3. `디바운스(Debouncing)`와 `스로틀(Throttling)`
 
 <br>
 
-## 41-3-1. 디바운스
+## 41-3-1. `디바운스(Debouncing)`
 
 <br>
 
-## 41-3-2. 스로틀
-
+## 41-3-2. `스로틀(Throttling)`
 
 <br>
 
