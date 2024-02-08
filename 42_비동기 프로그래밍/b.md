@@ -4,6 +4,7 @@
 
 - [42장: 비동기 프로그래밍](#42장-비동기-프로그래밍)
   - [42.1 동기 처리와 비동기 처리](#421-동기-처리와-비동기-처리)
+    - [예제: 비동기 처리](#예제-비동기-처리)
   - [42.2 이벤트 루프와 태스크 큐](#422-이벤트-루프와-태스크-큐)
   - [References](#references)
 
@@ -187,6 +188,33 @@ foo();
     - 콜백 지옥을 해결하기 위해 프로미스와 async/await 패턴을 사용
 
 <br>
+
+### 예제: [비동기 처리](https://codesandbox.io/p/sandbox/bidonggi-hamsu-43wlxy?file=/src/index.js)
+
+```javascript
+/**
+ * 지정된 URL에서 포켓몬 데이터를 가져오는 비동기 함수입니다.
+ * @param {string} url - 포켓몬 데이터를 요청할 URL입니다.
+ * @returns {Promise<Object>} 포켓몬 데이터를 담은 Promise 객체를 반환합니다.
+ * @throws {Error} HTTP 요청이 실패하면 에러를 발생시킵니다.
+ */
+async function fetchPokemonData(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+
+...
+
+document.addEventListener("DOMContentLoaded", () => {
+  populatePokemonList(21);
+});
+
+```
+
+- `fetchPokemonData` 함수는 `async` 함수로 정의되어 있으므로 `await` 키워드를 사용하여 비동기 처리를 수행
+  - `await` 키워드는 프로미스가 처리될 때까지 대기하고, 프로미스가 처리되면 프로미스가 반환하는 값으로 대체됨
+  - `await` 키워드는 `async` 함수 내에서만 사용 가능
 
 ## 42.2 이벤트 루프와 태스크 큐
 
