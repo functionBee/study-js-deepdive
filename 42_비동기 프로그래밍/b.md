@@ -189,7 +189,7 @@ foo();
 
 <br>
 
-### 예제: [비동기 처리](https://codesandbox.io/p/sandbox/bidonggi-hamsu-43wlxy?file=/src/script.js)
+### 예제: [비동기 처리](https://codesandbox.io/p/sandbox/bidonggi-hamsu-43wlxy?file=%2Fscript.js)
 
 ```javascript
 /**
